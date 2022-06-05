@@ -11,7 +11,7 @@ import com.ytu.businesstravelapp.Fragments.MapFragment;
 import com.ytu.businesstravelapp.Fragments.ProfileFragment;
 
 public class HomeActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
-
+    //MAPS_API_KEY=AIzaSyAaflO4djVC3VTRXf9SpyXF16U1i0LDzK4
     BottomNavigationView bottomNavigationView;
 
     @Override
