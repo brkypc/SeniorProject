@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "256918212690",
+    "project_id": "businesstravel-352310",
+    "storage_bucket": "businesstravel-352310.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:256918212690:android:3122893898fc234482cf8b",
+        "android_client_info": {
+          "package_name": "com.ytu.businesstravelapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "256918212690-57arabq7njetqmogeveth53oa922lt6g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ytu.businesstravelapp",
+            "certificate_hash": "bb919fda103877388d44fce5d248fe603fc23c0c"
+          }
+        },
+        {
+          "client_id": "256918212690-4n19t36qojk3hf533918p6dok64lutf1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAaflO4djVC3VTRXf9SpyXF16U1i0LDzK4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "256918212690-4n19t36qojk3hf533918p6dok64lutf1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
