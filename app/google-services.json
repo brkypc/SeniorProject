@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "256918212690",
+    "firebase_url": "https://businesstravel-352310-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "businesstravel-352310",
     "storage_bucket": "businesstravel-352310.appspot.com"
   },
@@ -19,6 +20,14 @@
           "android_info": {
             "package_name": "com.ytu.businesstravelapp",
             "certificate_hash": "bb919fda103877388d44fce5d248fe603fc23c0c"
+          }
+        },
+        {
+          "client_id": "256918212690-sksh0856vgs9n8g9dkr6i3l3v89qlc0b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ytu.businesstravelapp",
+            "certificate_hash": "7f627c88e4d3e7fc5902d40455741f5e8abd7b7c"
           }
         },
         {

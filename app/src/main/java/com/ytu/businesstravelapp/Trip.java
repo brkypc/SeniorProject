@@ -1,14 +1,20 @@
 package com.ytu.businesstravelapp;
 
 public class Trip {
-    String date, tripTime, taxiType, distance, amount;
+    String id, date, tripTime, taxiType, distance, amount, nameSurname, billPrice, status;
 
-    public Trip(String date, String tripTime, String taxiType, String distance, String amount) {
-        this.date = date;
-        this.tripTime = tripTime;
-        this.taxiType = taxiType;
-        this.distance = distance;
-        this.amount = amount;
+    public Trip() { }
+
+    public String getNameSurname() {
+        return nameSurname;
+    }
+
+    public String getBillPrice() {
+        return billPrice;
+    }
+
+    public String getStatus() {
+        return status;
     }
 
     public String getDate() {
@@ -29,5 +35,11 @@ public class Trip {
 
     public String getAmount() {
         return amount;
+    }
+
+    public String getId() { return id; }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

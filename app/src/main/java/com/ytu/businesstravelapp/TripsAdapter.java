@@ -1,5 +1,6 @@
 package com.ytu.businesstravelapp;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,14 +35,15 @@ public class TripsAdapter extends RecyclerView.Adapter<TripsAdapter.ViewHolder> 
         return new ViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull TripsAdapter.ViewHolder holder, int position) {
         Trip trip = trips.get(position);
 
         holder.date.setText(trip.getDate());
         holder.tripTime.setText(trip.getTripTime());
-        holder.distance.setText(trip.getDistance());
-        holder.amount.setText(trip.getAmount());
+        holder.distance.setText(trip.getDistance() + " km");
+        holder.amount.setText(trip.getAmount() + " ₺");
         if (trip.getTaxiType().equalsIgnoreCase("1"))
             holder.taxiPhoto.setImageResource(R.drawable.yellow_taxi);
         else if(trip.getTaxiType().equalsIgnoreCase("2")){
@@ -55,7 +57,7 @@ public class TripsAdapter extends RecyclerView.Adapter<TripsAdapter.ViewHolder> 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "basıp durma kasıyo!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "", Toast.LENGTH_SHORT).show();
             }
         });
 

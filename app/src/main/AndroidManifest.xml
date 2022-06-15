@@ -19,6 +19,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BusinessTravelApp">
         <activity
+            android:name=".AdminActivity"
+            android:exported="false" />
+        <activity
             android:name=".LoginActivity"
             android:exported="false" />
         <activity

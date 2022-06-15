@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FAC4A2"
+    android:background="#f2f2f2"
     android:orientation="vertical"
     android:padding="30dp"
     tools:context=".LoginActivity">
@@ -13,20 +13,22 @@
         android:id="@+id/loginText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
         android:layout_marginBottom="80dp"
+        android:fontFamily="casual"
         android:text="Business Travel"
         android:textColor="@color/black"
-        android:textSize="30sp"
-        android:layout_centerHorizontal="true"/>
+        android:textSize="36sp"
+        android:textStyle="bold" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/email"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="E-Posta"
         android:layout_below="@+id/loginText"
+        android:hint="E-Posta"
         app:endIconMode="clear_text"
         app:endIconTint="@color/black"
         app:errorEnabled="true"
@@ -36,8 +38,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            android:textColor="@color/black" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -46,8 +48,8 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Şifre"
         android:layout_below="@+id/email"
+        android:hint="Şifre"
         app:errorEnabled="true"
         app:errorIconDrawable="@null"
         app:passwordToggleEnabled="true"
@@ -57,9 +59,18 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:textColor="@color/black" />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/resetPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/password"
+        android:layout_alignParentRight="true"
+        android:text="Şifremi Unuttum"
+        android:textSize="14sp" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/loginButton"
@@ -67,7 +78,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/password"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/startbtn_bg"
         android:text="Giriş Yap"
         android:textAllCaps="false"
@@ -77,9 +88,9 @@
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
         android:layout_below="@+id/loginButton"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
         android:elevation="8dp"
         android:visibility="gone" />
 

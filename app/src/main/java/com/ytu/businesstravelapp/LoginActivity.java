@@ -1,18 +1,26 @@
 package com.ytu.businesstravelapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Objects;
 
@@ -21,8 +29,7 @@ public class LoginActivity extends AppCompatActivity {
     TextInputLayout email, password;
     AppCompatButton loginButton;
     ProgressBar progressBar;
-    ImageView info;
-
+    TextView resetPassword;
 
     String userEnteredEmail, userEnteredPassword;
 
@@ -44,11 +51,28 @@ public class LoginActivity extends AppCompatActivity {
                         progressBar.setVisibility(View.VISIBLE);
                         Toast.makeText(LoginActivity.this, "Giriş Yaptınız.", Toast.LENGTH_SHORT).show();
 
-                        new Handler().postDelayed(() -> {
-                            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                            startActivity(intent);
-                            finish();
-                        },1000);
+                        SharedPreferences sharedPreferences = getSharedPreferences("mySharedPref", MODE_PRIVATE);
+                        @SuppressLint("CommitPrefEdits")
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        if(Objects.requireNonNull(userEnteredEmail).equalsIgnoreCase("admin@ytu.com")) {
+                            editor.putString("userType","admin");
+                            editor.apply();
+                            new Handler().postDelayed(() -> {
+                                Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
+                                startActivity(intent);
+                                finish();
+                            },1000);
+                        }
+                        else{
+                            editor.putString("userType","user");
+                            editor.apply();
+                            new Handler().postDelayed(() -> {
+                                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                                startActivity(intent);
+                                finish();
+                            },1000);
+                        }
+
                     }
                     else {
                         loginButton.setClickable(true);
@@ -64,7 +88,7 @@ public class LoginActivity extends AppCompatActivity {
         userEnteredPassword = Objects.requireNonNull(password.getEditText()).getText().toString().trim();
 
         if(userEnteredEmail.isEmpty()) {
-            email.setError("Kardeşim e-postayı unuttun");
+            email.setError("E-postayı giriniz");
             validate = false;
         }
         else {
@@ -72,7 +96,7 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         if(userEnteredPassword.isEmpty()) {
-            password.setError("Kardeşim şifreyi unuttun");
+            password.setError("Şifreyi giriniz");
             validate = false;
         }
         else {
@@ -89,6 +113,31 @@ public class LoginActivity extends AppCompatActivity {
                 validateUser();
             }
         });
+
+        resetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                userEnteredEmail = Objects.requireNonNull(email.getEditText()).getText().toString().trim();
+                if(userEnteredEmail.isEmpty()) {
+                    email.setError("E-postayı giriniz");
+                }
+                else {
+                    FirebaseAuth.getInstance().sendPasswordResetEmail(userEnteredEmail).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if(task.isSuccessful()) {
+                                email.getEditText().setText("");
+                                Objects.requireNonNull(password.getEditText()).setText("");
+                                Toast.makeText(LoginActivity.this, "Sıfırlama maili gönderildi", Toast.LENGTH_SHORT).show();
+                            }
+                            else {
+                                Toast.makeText(LoginActivity.this, "Bir hata oluştu", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                }
+            }
+        });
     }
 
     private void defineVariables() {
@@ -97,5 +146,6 @@ public class LoginActivity extends AppCompatActivity {
         password = findViewById(R.id.password);
         loginButton = findViewById(R.id.loginButton);
         progressBar = findViewById(R.id.progressBar);
+        resetPassword = findViewById(R.id.resetPassword);
     }
 }

@@ -24,8 +24,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.ytu.businesstravelapp.Fragments.MapFragment;
 
 import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
+import java.util.Objects;
 
 public class TaxiAdapter extends RecyclerView.Adapter<TaxiAdapter.ViewHolder> {
     private final LayoutInflater mInflater;
@@ -34,6 +39,7 @@ public class TaxiAdapter extends RecyclerView.Adapter<TaxiAdapter.ViewHolder> {
     private static ArrayList<Location> locations;
     public static final String MESSENGER_INTENT_KEY = "msg-intent-key";
     private IncomingMessageHandler mHandler;
+    private Date startTime, endTime;
 
     public TaxiAdapter(Context context, ArrayList<Taxi> taxis) {
         this.context = context;
@@ -96,14 +102,56 @@ public class TaxiAdapter extends RecyclerView.Adapter<TaxiAdapter.ViewHolder> {
                     if (calculatedReceipt<Float.parseFloat(taxi.getMinPrice())) calculatedReceipt= Float.parseFloat(taxi.getMinPrice());
                     Log.d("test",calculatedReceipt + "");
 
+                    endTime = Calendar.getInstance().getTime();
+                    Log.d("test1", endTime.toString());
+
+
+                    // Calculating the difference in milliseconds
+                    long differenceInMilliSeconds
+                            = Math.abs(endTime.getTime() - startTime.getTime());
+
+                    // Calculating the difference in Hours
+                    long differenceInHours
+                            = (differenceInMilliSeconds / (60 * 60 * 1000))
+                            % 24;
+
+                    // Calculating the difference in Minutes
+                    long differenceInMinutes
+                            = (differenceInMilliSeconds / (60 * 1000)) % 60;
+
+                    // Calculating the difference in Seconds
+                    long differenceInSeconds
+                            = (differenceInMilliSeconds / 1000) % 60;
+
+                    Log.d("test1", String.valueOf(differenceInSeconds));
+                    Log.d("test1",String.valueOf(differenceInHours));
+                    Log.d("test1", String.valueOf(differenceInMinutes));
+
+                    String tripTime = "";
+                    if (differenceInHours > 0) {
+                        tripTime+=differenceInHours + " s ";
+                    }
+                    tripTime+=differenceInMinutes + " dk ";
+                    tripTime+=differenceInSeconds + " sn";
+
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyyy HH:mm", new Locale("tr"));
+                    String sDate = sdf.format(startTime);
+                    Log.d("test1", "date: "+ startTime);
+                    Log.d("test1", "sdate: "+ sDate);
 
                     Intent photo = new Intent(context, PhotoActivity.class);
+
+                    photo.putExtra("date", sDate);
+                    photo.putExtra("tripTime", tripTime);
+                    photo.putExtra("taxiType", taxi.getType());
                     photo.putExtra("amount", String.valueOf(calculatedReceipt));
-                    photo.putExtra("km", s);
+                    photo.putExtra("distance", s);
                     context.startActivity(photo);
 
                 }
                 else {
+                    startTime = Calendar.getInstance().getTime();
+                    Log.d("test1", startTime.toString());
                     Intent startServiceIntent = new Intent(context, MyIntentService.class);
                     Messenger messengerIncoming = new Messenger(mHandler);
                     startServiceIntent.putExtra(MESSENGER_INTENT_KEY, messengerIncoming);

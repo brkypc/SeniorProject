@@ -88,8 +88,29 @@
         android:textColor="@color/white"
         android:background="@drawable/receipt_btn"/>
 
+    <TextView
+        android:id="@+id/receiptAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="10pt"
+        android:layout_marginTop="50dp"
+        android:text="Fiş Tutarı"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:id="@+id/resultText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="6pt"
+        android:layout_marginTop="10dp"
+        android:text="Result"
+        android:layout_gravity="center"/>
+
     <ImageView
-        android:id="@+id/imageView"
+        android:visibility="gone"
+        android:id="@+id/billPhoto"
         android:layout_width="wrap_content"
         android:layout_marginTop="25dp"
         android:layout_height="300dp"

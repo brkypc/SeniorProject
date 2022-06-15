@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -19,21 +20,19 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Objects;
 
-public class TripsActivity extends AppCompatActivity {
-
+public class AdminActivity extends AppCompatActivity {
     private RecyclerView rvTrips;
-    private TripsAdapter tripsAdapter;
+    private AdminTripsAdapter tripsAdapter;
     private ArrayList<Trip> trips;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_trips);
+        setContentView(R.layout.activity_admin);
 
-        rvTrips = findViewById(R.id.rvTrips);
+        rvTrips = findViewById(R.id.rvAdminTrips);
         rvTrips.setHasFixedSize(true);
         rvTrips.setLayoutManager(new LinearLayoutManager(this));
 
@@ -45,15 +44,6 @@ public class TripsActivity extends AppCompatActivity {
         FirebaseDatabase database = FirebaseDatabase.getInstance(firebaseURL);
         DatabaseReference tripRef = database.getReference("trips");
 
-        /*HashMap<String, Object> hashMap = new HashMap<>();
-        hashMap.put("date","4 Haziran 2022 14:22");
-        hashMap.put("tripTime", "23 dk");
-        hashMap.put("taxiType", "1");
-        hashMap.put("distance", "6.60");
-        hashMap.put("amount", "51.38");
-
-        tripRef.push().setValue(hashMap);*/
-
         Log.d("test1",tripRef.toString());
         tripRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -61,8 +51,9 @@ public class TripsActivity extends AppCompatActivity {
                 trips.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Trip trip = dataSnapshot.getValue(Trip.class);
-
                     if (trip != null) {
+                        trip.setId(dataSnapshot.getKey());
+                        Log.d("test1",dataSnapshot.getKey());
                         trips.add(trip);
                         Log.d("test1","trip null değil");
                     }
@@ -72,7 +63,7 @@ public class TripsActivity extends AppCompatActivity {
                 }
                 Log.d("test1",trips.size() + "");
 
-                tripsAdapter = new TripsAdapter(TripsActivity.this, trips);
+                tripsAdapter = new AdminTripsAdapter(AdminActivity.this, trips);
                 rvTrips.setAdapter(tripsAdapter);
             }
 
@@ -81,6 +72,5 @@ public class TripsActivity extends AppCompatActivity {
                 Log.d("test1",error.toString());
             }
         });
-
     }
 }
