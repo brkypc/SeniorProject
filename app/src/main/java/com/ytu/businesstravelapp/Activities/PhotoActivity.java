@@ -1,9 +1,8 @@
-package com.ytu.businesstravelapp;
+package com.ytu.businesstravelapp.Activities;
 
-import static com.ytu.businesstravelapp.MainActivity.firebaseURL;
+import static com.ytu.businesstravelapp.Activities.MainActivity.firebaseURL;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -15,8 +14,11 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.InputType;
 import android.util.Base64;
 import android.util.Log;
+import android.view.Gravity;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,6 +44,7 @@ import com.google.mlkit.vision.text.Text;
 import com.google.mlkit.vision.text.TextRecognition;
 import com.google.mlkit.vision.text.TextRecognizer;
 import com.google.mlkit.vision.text.latin.TextRecognizerOptions;
+import com.ytu.businesstravelapp.R;
 
 import java.io.ByteArrayOutputStream;
 import java.text.MessageFormat;
@@ -118,7 +121,27 @@ public class PhotoActivity extends AppCompatActivity {
                 Log.d("test", "Toplam Tutar: " + amount + " Lira");
                 amount = amount.replace(",", ".");
                 if(amount.matches("\\d+(?:\\.\\d+)?")) {
-                    saveToFirebase(amount);
+                    EditText edittext = new EditText(this);
+                    edittext.setText(amount);
+                    edittext.setGravity(Gravity.CENTER);
+                    edittext.setInputType(InputType.TYPE_CLASS_NUMBER);
+                    AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                    alert.setMessage("Faturadan okunan tutarı onaylayınız");
+                    alert.setView(edittext);
+                    alert.setPositiveButton("Onayla", (dialog, whichButton) -> {
+                        String userInput = edittext.getText().toString();
+                        saveToFirebase(userInput);
+                        /*if(userInput.matches("\\d+(?:\\.\\d+)?")) {
+                            Toast.makeText(PhotoActivity.this, userInput, Toast.LENGTH_SHORT).show();
+                            saveToFirebase(userInput);
+                        }else {
+                            Toast.makeText(PhotoActivity.this,"Lütfen sadece sayı giriniz", Toast.LENGTH_SHORT).show();
+                        }*/
+                    });
+                    alert.setNegativeButton("İptal", null);
+
+                    alert.show();
+
                 }
                 else {
                     Toast.makeText(PhotoActivity.this, R.string.noAmountFound, Toast.LENGTH_SHORT).show();
@@ -173,6 +196,9 @@ public class PhotoActivity extends AppCompatActivity {
 
         //tripRef.push().setValue(hashMap);
         Toast.makeText(PhotoActivity.this, "Seyahatiniz kaydedildi", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(PhotoActivity.this, TripsActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     private void chooseImage(Context context) {

@@ -1,10 +1,9 @@
-package com.ytu.businesstravelapp;
+package com.ytu.businesstravelapp.Adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
-import android.media.Image;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Messenger;
@@ -12,25 +11,24 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.ytu.businesstravelapp.Fragments.MapFragment;
+import com.ytu.businesstravelapp.Activities.PhotoActivity;
+import com.ytu.businesstravelapp.LocationServices.MyIntentService;
+import com.ytu.businesstravelapp.R;
+import com.ytu.businesstravelapp.Classes.Taxi;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
-import java.util.Objects;
 
 public class TaxiAdapter extends RecyclerView.Adapter<TaxiAdapter.ViewHolder> {
     private final LayoutInflater mInflater;
@@ -80,7 +78,7 @@ public class TaxiAdapter extends RecyclerView.Adapter<TaxiAdapter.ViewHolder> {
         }
 
         holder.startPrice.setText("Açılış Ücreti: " +taxi.getStartPrice() + "₺");
-        holder.kmText.setText(taxi.getKmPrice() + "₺/km");
+        holder.kmText.setText(taxi.getKmPrice() + " ₺/km");
 
         holder.startBtn.setOnClickListener(new View.OnClickListener() {
             @Override

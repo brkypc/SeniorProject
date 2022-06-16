@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#f2f2f2"
     android:orientation="vertical"
-    tools:context=".PricesActivity">
+    tools:context=".Activities.PricesActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -28,6 +28,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:text="6,30 ₺/km"
+            android:fontFamily="@font/muli"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView3" />
@@ -38,6 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
+            android:fontFamily="@font/muli"
             android:text="Açılış Ücreti: 9,80₺"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
@@ -52,7 +54,7 @@
             android:text="Sarı Taksi"
             android:textStyle="bold"
             android:textSize="10pt"
-            android:fontFamily="casual"
+            android:fontFamily="@font/baloo"
             android:textColor="@color/black"
             app:layout_constraintEnd_toStartOf="@+id/imageView2"
             app:layout_constraintStart_toStartOf="parent"
@@ -64,6 +66,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
+            android:fontFamily="@font/muli"
             android:text="İndi Bindi Ücreti: 28₺"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
@@ -97,6 +100,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
+            android:fontFamily="@font/muli"
             android:text="7,25 ₺/km"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
@@ -109,6 +113,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:text="Açılış Ücreti: 11,27₺"
+            android:fontFamily="@font/muli"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView5" />
@@ -123,7 +128,7 @@
             android:textStyle="bold"
             android:textSize="10pt"
             android:textColor="@color/black"
-            android:fontFamily="casual"
+            android:fontFamily="@font/baloo"
             app:layout_constraintEnd_toStartOf="@+id/imageView3"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -135,6 +140,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:text="İndi Bindi Ücreti: 32,20₺"
+            android:fontFamily="@font/muli"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView6" />
@@ -168,6 +174,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:text="10,71 ₺/km"
+            android:fontFamily="@font/muli"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView11" />
@@ -179,6 +186,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:text="Açılış Ücreti: 16,66₺"
+            android:fontFamily="@font/muli"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView9" />
@@ -190,7 +198,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:text="Siyah Taksi"
-            android:fontFamily="casual"
+            android:fontFamily="@font/baloo"
             android:textStyle="bold"
             android:textSize="10pt"
             android:textColor="@color/black"
@@ -205,6 +213,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:text="İndi Bindi Ücreti: 47,60₺"
+            android:fontFamily="@font/muli"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView10" />

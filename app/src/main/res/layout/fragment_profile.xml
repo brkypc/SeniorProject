@@ -4,19 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.ProfileFragment"
-    android:background="#f2f2f2">
+    android:background="#f2f2f2"
+    tools:context=".Fragments.ProfileFragment">
 
     <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/baloo"
         android:text="Ahmet YAMAN"
         android:textColor="#43a047"
         android:textSize="12pt"
-        android:textStyle="italic|bold"
-        android:layout_marginTop="30dp"
-        android:layout_marginStart="20dp"
+        android:textStyle="italic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,12 +25,13 @@
         android:id="@+id/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/baloo"
         android:text="ymna32@gmail.com"
         android:textColor="#43a047"
         android:textSize="12pt"
-        android:textStyle="italic|bold"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="20dp"
+        android:textStyle="italic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/name" />
 
@@ -38,36 +40,39 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
         android:layout_marginTop="50dp"
+        android:layout_marginEnd="20dp"
         android:background="@drawable/profile_btn"
+        android:fontFamily="@font/muli_black"
+        android:text="Seyahatler"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email"
-        android:text="Seyahatlar"/>
+        app:layout_constraintTop_toBottomOf="@+id/email" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/prices"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
         android:background="@drawable/profile_btn"
+        android:fontFamily="@font/muli_black"
+        android:text="Ücretler"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/prevTrips"
-        android:text="Ücretler"/>
+        app:layout_constraintTop_toBottomOf="@+id/prevTrips" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/about"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
         android:background="@drawable/profile_btn"
+        android:fontFamily="@font/muli_black"
+        android:text="Hakkında"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/prices"
-        android:text="Hakkında"/>
+        app:layout_constraintTop_toBottomOf="@+id/prices" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/faq"
@@ -77,22 +82,23 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
         android:background="@drawable/profile_btn"
+        android:fontFamily="@font/muli_black"
+        android:text="SSS"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/about"
-        android:text="SSS"/>
+        app:layout_constraintTop_toBottomOf="@+id/about" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/logout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
         android:background="@drawable/profile_btn"
+        android:fontFamily="@font/muli_black"
+        android:text="Çıkış"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/faq"
-        android:text="Çıkış"/>
-
+        app:layout_constraintTop_toBottomOf="@+id/faq" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

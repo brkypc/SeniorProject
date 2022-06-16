@@ -19,30 +19,30 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BusinessTravelApp">
         <activity
-            android:name=".AdminActivity"
+            android:name=".Activities.AdminActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".Activities.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".PricesActivity"
+            android:name=".Activities.PricesActivity"
             android:exported="false" />
         <activity
-            android:name=".TripsActivity"
+            android:name=".Activities.TripsActivity"
             android:exported="false" />
         <activity
-            android:name=".HomeActivity"
+            android:name=".Activities.HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".PhotoActivity"
+            android:name=".Activities.PhotoActivity"
             android:exported="false" />
 
         <service
-            android:name=".MyIntentService"
+            android:name=".LocationServices.MyIntentService"
             android:exported="false" />
 
         <activity
-            android:name=".MainActivity"
+            android:name=".Activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -60,6 +60,9 @@
         <meta-data
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"
             android:value="ocr" />
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

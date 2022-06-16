@@ -9,13 +9,20 @@
         <entry key="..\:/Users/brkyy/AndroidStudioProjects/BusinessTravelApp/app/src/main/res/drawable/profile_btn.xml" value="0.1715" />
         <entry key="..\:/Users/brkyy/AndroidStudioProjects/BusinessTravelApp/app/src/main/res/drawable/receipt_btn.xml" value="0.1" />
         <entry key="..\:/Users/brkyy/AndroidStudioProjects/BusinessTravelApp/app/src/main/res/drawable/startbtn_bg.xml" value="0.1" />
+        <entry key="..\:/Users/brkyy/AndroidStudioProjects/BusinessTravelApp/app/src/main/res/font/aclonica.xml" value="0.17578125" />
+        <entry key="..\:/Users/brkyy/AndroidStudioProjects/BusinessTravelApp/app/src/main/res/font/antic.xml" value="0.17578125" />
+        <entry key="..\:/Users/brkyy/AndroidStudioProjects/BusinessTravelApp/app/src/main/res/font/baloo.xml" value="0.17578125" />
+        <entry key="..\:/Users/brkyy/AndroidStudioProjects/BusinessTravelApp/app/src/main/res/font/bungee.xml" value="0.17578125" />
+        <entry key="..\:/Users/brkyy/AndroidStudioProjects/BusinessTravelApp/app/src/main/res/font/muli.xml" value="0.17578125" />
+        <entry key="..\:/Users/brkyy/AndroidStudioProjects/BusinessTravelApp/app/src/main/res/font/muli_black.xml" value="0.17578125" />
+        <entry key="..\:/Users/brkyy/AndroidStudioProjects/BusinessTravelApp/app/src/main/res/font/muli_extralight.xml" value="1.6071428571428572" />
         <entry key="..\:/Users/brkyy/AndroidStudioProjects/BusinessTravelApp/app/src/main/res/layout/activity_admin.xml" value="0.25" />
-        <entry key="..\:/Users/brkyy/AndroidStudioProjects/BusinessTravelApp/app/src/main/res/layout/activity_home.xml" value="0.1" />
+        <entry key="..\:/Users/brkyy/AndroidStudioProjects/BusinessTravelApp/app/src/main/res/layout/activity_home.xml" value="0.18" />
         <entry key="..\:/Users/brkyy/AndroidStudioProjects/BusinessTravelApp/app/src/main/res/layout/activity_login.xml" value="0.16" />
-        <entry key="..\:/Users/brkyy/AndroidStudioProjects/BusinessTravelApp/app/src/main/res/layout/activity_main.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/brkyy/AndroidStudioProjects/BusinessTravelApp/app/src/main/res/layout/activity_main.xml" value="0.19" />
         <entry key="..\:/Users/brkyy/AndroidStudioProjects/BusinessTravelApp/app/src/main/res/layout/activity_photo.xml" value="0.2" />
         <entry key="..\:/Users/brkyy/AndroidStudioProjects/BusinessTravelApp/app/src/main/res/layout/activity_prices.xml" value="0.25" />
-        <entry key="..\:/Users/brkyy/AndroidStudioProjects/BusinessTravelApp/app/src/main/res/layout/activity_trips.xml" value="0.153125" />
+        <entry key="..\:/Users/brkyy/AndroidStudioProjects/BusinessTravelApp/app/src/main/res/layout/activity_trips.xml" value="0.25" />
         <entry key="..\:/Users/brkyy/AndroidStudioProjects/BusinessTravelApp/app/src/main/res/layout/admin_trip_item.xml" value="0.25" />
         <entry key="..\:/Users/brkyy/AndroidStudioProjects/BusinessTravelApp/app/src/main/res/layout/fragment_map.xml" value="0.17" />
         <entry key="..\:/Users/brkyy/AndroidStudioProjects/BusinessTravelApp/app/src/main/res/layout/fragment_profile.xml" value="0.25" />

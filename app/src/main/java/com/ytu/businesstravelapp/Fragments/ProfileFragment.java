@@ -1,13 +1,13 @@
 package com.ytu.businesstravelapp.Fragments;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,19 +15,16 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.ytu.businesstravelapp.LoginActivity;
-import com.ytu.businesstravelapp.PricesActivity;
+import com.ytu.businesstravelapp.Activities.MainActivity;
+import com.ytu.businesstravelapp.Activities.PricesActivity;
 import com.ytu.businesstravelapp.R;
-import com.ytu.businesstravelapp.TripsActivity;
+import com.ytu.businesstravelapp.Activities.TripsActivity;
 
-import java.util.Arrays;
 import java.util.Objects;
 
 public class ProfileFragment extends Fragment {
 
-    public ProfileFragment() {
-        // Required empty public constructor
-    }
+    public ProfileFragment() { }
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -75,16 +72,15 @@ public class ProfileFragment extends Fragment {
         });
 
         AppCompatButton logoutButton = view.findViewById(R.id.logout);
-        logoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FirebaseAuth firebaseAuth  = FirebaseAuth.getInstance();
-                firebaseAuth.signOut();
-                Intent intent = new Intent(requireContext(), LoginActivity.class);
-                startActivity(intent);
-                requireActivity().finish();
-            }
-        });
+        logoutButton.setOnClickListener(view1 -> new AlertDialog.Builder(requireContext())
+                .setMessage("Çıkış yapmak istiyor musunuz?")
+                .setPositiveButton("Evet", (dialog, whichButton) -> {
+                    FirebaseAuth.getInstance().signOut();
+                    Intent intent = new Intent(requireContext(), MainActivity.class);
+                    startActivity(intent);
+                    requireActivity().finish();
+                })
+                .setNegativeButton("Hayır", null).show());
 
         return view;
     }

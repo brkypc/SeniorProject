@@ -1,4 +1,4 @@
-package com.ytu.businesstravelapp;
+package com.ytu.businesstravelapp.Classes;
 
 public class Taxi {
     String type, startPrice, kmPrice, minPrice;

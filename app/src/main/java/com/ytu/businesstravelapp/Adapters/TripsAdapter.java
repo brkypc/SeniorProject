@@ -1,4 +1,4 @@
-package com.ytu.businesstravelapp;
+package com.ytu.businesstravelapp.Adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -7,10 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.ytu.businesstravelapp.R;
+import com.ytu.businesstravelapp.Classes.Trip;
 
 import java.util.ArrayList;
 
@@ -57,7 +59,6 @@ public class TripsAdapter extends RecyclerView.Adapter<TripsAdapter.ViewHolder> 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "", Toast.LENGTH_SHORT).show();
             }
         });
 

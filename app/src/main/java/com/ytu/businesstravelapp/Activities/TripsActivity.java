@@ -1,6 +1,6 @@
-package com.ytu.businesstravelapp;
+package com.ytu.businesstravelapp.Activities;
 
-import static com.ytu.businesstravelapp.MainActivity.firebaseURL;
+import static com.ytu.businesstravelapp.Activities.MainActivity.firebaseURL;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,27 +12,30 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.ytu.businesstravelapp.R;
+import com.ytu.businesstravelapp.Classes.Trip;
+import com.ytu.businesstravelapp.Adapters.TripsAdapter;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class AdminActivity extends AppCompatActivity {
+public class TripsActivity extends AppCompatActivity {
+
     private RecyclerView rvTrips;
-    private AdminTripsAdapter tripsAdapter;
+    private TripsAdapter tripsAdapter;
     private ArrayList<Trip> trips;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin);
+        setContentView(R.layout.activity_trips);
 
-        rvTrips = findViewById(R.id.rvAdminTrips);
+        rvTrips = findViewById(R.id.rvTrips);
         rvTrips.setHasFixedSize(true);
         rvTrips.setLayoutManager(new LinearLayoutManager(this));
 
@@ -44,6 +47,15 @@ public class AdminActivity extends AppCompatActivity {
         FirebaseDatabase database = FirebaseDatabase.getInstance(firebaseURL);
         DatabaseReference tripRef = database.getReference("trips");
 
+        /*HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("date","4 Haziran 2022 14:22");
+        hashMap.put("tripTime", "23 dk");
+        hashMap.put("taxiType", "1");
+        hashMap.put("distance", "6.60");
+        hashMap.put("amount", "51.38");
+
+        tripRef.push().setValue(hashMap);*/
+
         Log.d("test1",tripRef.toString());
         tripRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -51,9 +63,8 @@ public class AdminActivity extends AppCompatActivity {
                 trips.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Trip trip = dataSnapshot.getValue(Trip.class);
+
                     if (trip != null) {
-                        trip.setId(dataSnapshot.getKey());
-                        Log.d("test1",dataSnapshot.getKey());
                         trips.add(trip);
                         Log.d("test1","trip null değil");
                     }
@@ -63,7 +74,7 @@ public class AdminActivity extends AppCompatActivity {
                 }
                 Log.d("test1",trips.size() + "");
 
-                tripsAdapter = new AdminTripsAdapter(AdminActivity.this, trips);
+                tripsAdapter = new TripsAdapter(TripsActivity.this, trips);
                 rvTrips.setAdapter(tripsAdapter);
             }
 
@@ -72,5 +83,6 @@ public class AdminActivity extends AppCompatActivity {
                 Log.d("test1",error.toString());
             }
         });
+
     }
 }

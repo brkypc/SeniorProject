@@ -1,6 +1,6 @@
-package com.ytu.businesstravelapp;
+package com.ytu.businesstravelapp.Adapters;
 
-import static com.ytu.businesstravelapp.MainActivity.firebaseURL;
+import static com.ytu.businesstravelapp.Activities.MainActivity.firebaseURL;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
@@ -18,9 +18,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.ytu.businesstravelapp.R;
+import com.ytu.businesstravelapp.Classes.Trip;
 
 import java.util.ArrayList;
 
@@ -108,10 +109,10 @@ public class AdminTripsAdapter extends RecyclerView.Adapter<AdminTripsAdapter.Vi
 
         nameSurname.setText(trip.getNameSurname());
         date.setText(trip.getDate());
-        distance.setText("Gidilen Mesafe:             " + trip.getDistance() + " km");
-        tripTime.setText("Seyahat Süresi:             " + trip.getTripTime());
-        billPrice.setText("Fiş Tutarı:                        " + trip.getBillPrice() + "₺");
-        calculatedPrice.setText("Hesaplanan Tutar:        " + trip.getAmount() + "₺");
+        distance.setText(trip.getDistance() + " km");
+        tripTime.setText(trip.getTripTime());
+        billPrice.setText(trip.getBillPrice() + "₺");
+        calculatedPrice.setText(trip.getAmount() + "₺");
         if (trip.getTaxiType().equals("1")) {
             taxiPhoto.setImageResource(R.drawable.yellow_taxi);
         } else if (trip.getTaxiType().equals("2")) {

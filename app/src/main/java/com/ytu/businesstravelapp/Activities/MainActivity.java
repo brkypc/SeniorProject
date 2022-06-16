@@ -1,32 +1,23 @@
-package com.ytu.businesstravelapp;
+package com.ytu.businesstravelapp.Activities;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.WindowManager;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.Objects;
+import com.ytu.businesstravelapp.R;
 
 public class MainActivity extends AppCompatActivity {
     public static final String firebaseURL = "https://businesstravel-352310-default-rtdb.europe-west1.firebasedatabase.app/";
-    TextView appName;
-    LottieAnimationView lottie;
+    private TextView appName;
+    private LottieAnimationView lottie;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +28,8 @@ public class MainActivity extends AppCompatActivity {
         appName = findViewById(R.id.appName);
         lottie = findViewById(R.id.lottie);
 
-        appName.animate().translationY(-100).setDuration(500).setStartDelay(0);
-        lottie.animate().translationX(1000).setDuration(500).setStartDelay(2000);
+        //appName.animate().translationY(300).setDuration(500).setStartDelay(0);
+        //lottie.animate().translationX(1000).setDuration(500).setStartDelay(2000);
 
         FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
         if(fUser != null) {
@@ -63,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
-            }, 500);
+            }, 500); // real 3750
         }
 
     }

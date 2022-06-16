@@ -1,4 +1,4 @@
-package com.ytu.businesstravelapp;
+package com.ytu.businesstravelapp.LocationServices;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

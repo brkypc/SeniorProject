@@ -13,9 +13,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,14 +21,12 @@ import androidx.recyclerview.widget.SnapHelper;
 
 import android.os.Handler;
 import android.os.Message;
-import android.os.Messenger;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -39,21 +35,16 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.ytu.businesstravelapp.MainActivity;
-import com.ytu.businesstravelapp.MyIntentService;
-import com.ytu.businesstravelapp.PhotoActivity;
+import com.ytu.businesstravelapp.LocationServices.MyIntentService;
 import com.ytu.businesstravelapp.R;
-import com.ytu.businesstravelapp.Taxi;
-import com.ytu.businesstravelapp.TaxiAdapter;
-import com.ytu.businesstravelapp.Trip;
-import com.ytu.businesstravelapp.TripsAdapter;
+import com.ytu.businesstravelapp.Classes.Taxi;
+import com.ytu.businesstravelapp.Adapters.TaxiAdapter;
 
 import java.io.IOException;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 
 public class MapFragment extends Fragment implements GoogleMap.OnMyLocationButtonClickListener,
         GoogleMap.OnMyLocationClickListener, OnMapReadyCallback {
@@ -247,7 +238,7 @@ public class MapFragment extends Fragment implements GoogleMap.OnMyLocationButto
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == LOCATION_REQUEST_CODE && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-           // startActivity(getIntent());
+           requireActivity().recreate();
         } else {
             Toast.makeText(requireContext(), "İzin verilmedi", Toast.LENGTH_SHORT).show();
         }

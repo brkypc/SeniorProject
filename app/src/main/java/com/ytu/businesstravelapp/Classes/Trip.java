@@ -1,4 +1,4 @@
-package com.ytu.businesstravelapp;
+package com.ytu.businesstravelapp.Classes;
 
 public class Trip {
     String id, date, tripTime, taxiType, distance, amount, nameSurname, billPrice, status;

@@ -7,7 +7,7 @@
     android:background="#f2f2f2"
     android:orientation="vertical"
     android:padding="30dp"
-    tools:context=".LoginActivity">
+    tools:context=".Activities.LoginActivity">
 
     <TextView
         android:id="@+id/loginText"
@@ -16,8 +16,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
         android:layout_marginBottom="80dp"
-        android:fontFamily="casual"
-        android:text="Business Travel"
+        android:fontFamily="@font/aclonica"
+        android:text="@string/app_text"
         android:textColor="@color/black"
         android:textSize="36sp"
         android:textStyle="bold" />
@@ -70,6 +70,7 @@
         android:layout_below="@+id/password"
         android:layout_alignParentRight="true"
         android:text="Şifremi Unuttum"
+        android:fontFamily="@font/muli_extralight"
         android:textSize="14sp" />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -79,7 +80,8 @@
         android:layout_below="@+id/password"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        android:background="@drawable/startbtn_bg"
+        android:background="@drawable/start_button_bg"
+        android:fontFamily="@font/muli_black"
         android:text="Giriş Yap"
         android:textAllCaps="false"
         android:textColor="@color/black" />

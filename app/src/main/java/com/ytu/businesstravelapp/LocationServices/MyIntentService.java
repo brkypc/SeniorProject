@@ -1,4 +1,4 @@
-package com.ytu.businesstravelapp;
+package com.ytu.businesstravelapp.LocationServices;
 
 import static com.ytu.businesstravelapp.Fragments.MapFragment.MESSENGER_INTENT_KEY;
 

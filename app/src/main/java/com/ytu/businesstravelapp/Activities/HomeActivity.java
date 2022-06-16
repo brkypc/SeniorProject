@@ -1,4 +1,4 @@
-package com.ytu.businesstravelapp;
+package com.ytu.businesstravelapp.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.ytu.businesstravelapp.Fragments.MapFragment;
 import com.ytu.businesstravelapp.Fragments.ProfileFragment;
+import com.ytu.businesstravelapp.R;
 
 import java.util.HashMap;
 import java.util.Objects;
