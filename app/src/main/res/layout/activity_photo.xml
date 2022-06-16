@@ -27,16 +27,15 @@
         android:layout_gravity="center"
         android:padding="20dp"
         android:layout_marginTop="25dp"
-        android:layout_height="120dp">
+        android:layout_height="150dp">
 
         <TextView
             android:id="@+id/distanceText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:textSize="9pt"
-            android:fontFamily="@font/aclonica"
-            android:layout_marginBottom="20dp"
+            android:textSize="7pt"
+            android:fontFamily="@font/muli_black"
             android:text="Gidilen Mesafe:"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
@@ -47,9 +46,9 @@
             android:layout_height="wrap_content"
             android:text="2 km"
             android:textStyle="bold"
-            android:fontFamily="@font/aclonica"
+            android:fontFamily="@font/muli_black"
             android:textColor="@color/black"
-            android:textSize="9pt"
+            android:textSize="7pt"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -59,69 +58,68 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:textSize="9pt"
-            android:fontFamily="@font/aclonica"
+            android:textSize="7pt"
+           android:layout_marginTop="10dp"
+            android:fontFamily="@font/muli_black"
             android:text="Hesaplanan Tutar:"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/distanceText"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintBottom_toTopOf="@+id/ocrText"/>
 
         <TextView
             android:id="@+id/amount"
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:text="₺45"
+            android:layout_marginTop="10dp"
             android:textStyle="bold"
-            android:fontFamily="@font/aclonica"
+            android:fontFamily="@font/muli_black"
             android:textColor="@color/black"
-            android:textSize="9pt"
+            android:textSize="7pt"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/distanceText"
+            app:layout_constraintBottom_toTopOf="@+id/ocrAmount"/>
+
+        <TextView
+            android:id="@+id/ocrText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="7pt"
+            android:fontFamily="@font/muli_black"
+            android:layout_marginTop="10dp"
+            android:text="Fiş Tutarı:"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/amountText"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+            android:id="@+id/ocrAmount"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:text="₺344.32"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/muli_black"
+            android:textColor="@color/black"
+            android:textSize="7pt"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/amount"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/receiptButton"
+        android:id="@+id/saveDatabase"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="25dp"
-        android:text="Fiş Ekle"
+        android:text="Seyahati Kaydet"
         android:fontFamily="@font/muli_black"
         android:textAllCaps="false"
-        android:textSize="12pt"
+        android:textSize="9pt"
         android:textColor="@color/white"
         android:background="@drawable/receipt_btn"/>
-
-    <TextView
-        android:id="@+id/receiptAmount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:textSize="10pt"
-        android:layout_marginTop="50dp"
-        android:text="Fiş Tutarı"
-        android:layout_gravity="center"/>
-
-    <TextView
-        android:id="@+id/resultText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:textSize="6pt"
-        android:layout_marginTop="10dp"
-        android:text="Result"
-        android:layout_gravity="center"/>
-
-    <ImageView
-        android:visibility="gone"
-        android:id="@+id/billPhoto"
-        android:layout_width="wrap_content"
-        android:layout_marginTop="25dp"
-        android:layout_height="300dp"
-        android:layout_gravity="center_horizontal"
-        android:contentDescription="@string/receipt"
-        tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
 </LinearLayout>

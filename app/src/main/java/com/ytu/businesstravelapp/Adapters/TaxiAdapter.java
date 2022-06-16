@@ -18,10 +18,10 @@ import android.widget.ToggleButton;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.ytu.businesstravelapp.Activities.PhotoActivity;
+import com.ytu.businesstravelapp.Activities.OCRActivity;
+import com.ytu.businesstravelapp.Classes.Taxi;
 import com.ytu.businesstravelapp.LocationServices.MyIntentService;
 import com.ytu.businesstravelapp.R;
-import com.ytu.businesstravelapp.Classes.Taxi;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -61,45 +61,48 @@ public class TaxiAdapter extends RecyclerView.Adapter<TaxiAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull TaxiAdapter.ViewHolder holder, int position) {
         Taxi taxi = taxis.get(position);
 
-        if(taxi.getType().equalsIgnoreCase("1")) {
+        if (taxi.getType().equalsIgnoreCase("1")) {
             holder.taxiText.setText("Sarı Taksi");
             holder.taxi.setImageResource(R.drawable.yellow_taxi);
-        }
-        else if(taxi.getType().equalsIgnoreCase("2")) {
+        } else if (taxi.getType().equalsIgnoreCase("2")) {
             holder.taxiText.setText("Turkuaz Taksi");
             holder.taxi.setImageResource(R.drawable.blue_taxi);
             holder.taxi.setScaleY((float) 1.15);
-        }
-        else {
+        } else {
             holder.taxiText.setText("Siyah Taksi");
             holder.taxi.setImageResource(R.drawable.black_taxi);
             holder.taxi.setScaleX((float) 1.15);
             holder.next.setVisibility(View.INVISIBLE);
         }
 
-        holder.startPrice.setText("Açılış Ücreti: " +taxi.getStartPrice() + "₺");
+        holder.startPrice.setText("Açılış Ücreti: " + taxi.getStartPrice() + "₺");
         holder.kmText.setText(taxi.getKmPrice() + " ₺/km");
 
         holder.startBtn.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("DefaultLocale")
             @Override
             public void onClick(View view) {
-                if(!holder.startBtn.isChecked()) {
+                if (!holder.startBtn.isChecked()) {
                     context.stopService(new Intent(context, MyIntentService.class));
-                    Log.d("test", "stopped service" );
-                    for (Location l:locations) {
+                    Log.d("test", "stopped service");
+                    for (Location l : locations) {
                         Log.d("test", l.getLatitude() + " long:" + l.getLongitude());
                     }
-                    float result = locations.get(0).distanceTo(locations.get(locations.size()-1));
-                    Log.d("test", String.valueOf(result/1000));
-                    Log.d("test", String.valueOf(result));
+                    float calculatedReceipt = 0.0F;
+                    String distance = "0.0";
+                    if (locations.size() > 2) {
+                        float result = locations.get(0).distanceTo(locations.get(locations.size() - 1));
+                        Log.d("test", String.valueOf(result / 1000));
+                        Log.d("test", String.valueOf(result));
 
-                    @SuppressLint("DefaultLocale")
-                    String s = String.format("%.1f", result/1000);
-                    s = s.replace(',', '.');
-                    float calculatedReceipt = (float) (Float.parseFloat(s)*(Float.parseFloat(taxi.getKmPrice())) + Float.parseFloat(taxi.getStartPrice()));
-                    if (calculatedReceipt<Float.parseFloat(taxi.getMinPrice())) calculatedReceipt= Float.parseFloat(taxi.getMinPrice());
-                    Log.d("test",calculatedReceipt + "");
 
+                        distance = String.format("%.1f", result / 1000);
+                        distance = distance.replace(',', '.');
+                        calculatedReceipt = (float) (Float.parseFloat(distance) * (Float.parseFloat(taxi.getKmPrice())) + Float.parseFloat(taxi.getStartPrice()));
+                        if (calculatedReceipt < Float.parseFloat(taxi.getMinPrice()))
+                            calculatedReceipt = Float.parseFloat(taxi.getMinPrice());
+                        Log.d("test", calculatedReceipt + "");
+                    }
                     endTime = Calendar.getInstance().getTime();
                     Log.d("test1", endTime.toString());
 
@@ -122,32 +125,31 @@ public class TaxiAdapter extends RecyclerView.Adapter<TaxiAdapter.ViewHolder> {
                             = (differenceInMilliSeconds / 1000) % 60;
 
                     Log.d("test1", String.valueOf(differenceInSeconds));
-                    Log.d("test1",String.valueOf(differenceInHours));
+                    Log.d("test1", String.valueOf(differenceInHours));
                     Log.d("test1", String.valueOf(differenceInMinutes));
 
                     String tripTime = "";
                     if (differenceInHours > 0) {
-                        tripTime+=differenceInHours + " s ";
+                        tripTime += differenceInHours + " s ";
                     }
-                    tripTime+=differenceInMinutes + " dk ";
-                    tripTime+=differenceInSeconds + " sn";
+                    tripTime += differenceInMinutes + " dk ";
+                    tripTime += differenceInSeconds + " sn";
 
                     SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyyy HH:mm", new Locale("tr"));
                     String sDate = sdf.format(startTime);
-                    Log.d("test1", "date: "+ startTime);
-                    Log.d("test1", "sdate: "+ sDate);
+                    Log.d("test1", "date: " + startTime);
+                    Log.d("test1", "sdate: " + sDate);
 
-                    Intent photo = new Intent(context, PhotoActivity.class);
+                    Intent intent = new Intent(context, OCRActivity.class);
 
-                    photo.putExtra("date", sDate);
-                    photo.putExtra("tripTime", tripTime);
-                    photo.putExtra("taxiType", taxi.getType());
-                    photo.putExtra("amount", String.valueOf(calculatedReceipt));
-                    photo.putExtra("distance", s);
-                    context.startActivity(photo);
+                    intent.putExtra("date", sDate);
+                    intent.putExtra("tripTime", tripTime);
+                    intent.putExtra("taxiType", taxi.getType());
+                    intent.putExtra("amount", String.valueOf(calculatedReceipt));
+                    intent.putExtra("distance", distance);
+                    context.startActivity(intent);
 
-                }
-                else {
+                } else {
                     startTime = Calendar.getInstance().getTime();
                     Log.d("test1", startTime.toString());
                     Intent startServiceIntent = new Intent(context, MyIntentService.class);
@@ -169,7 +171,7 @@ public class TaxiAdapter extends RecyclerView.Adapter<TaxiAdapter.ViewHolder> {
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView taxiText, startPrice, kmText;
         ToggleButton startBtn;
-        ImageView taxi,next;
+        ImageView taxi, next;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.ytu.businesstravelapp">
+    <uses-sdk
+        tools:overrideLibrary="
+          androidx.camera.camera2, androidx.camera.core,
+          androidx.camera.view, androidx.camera.lifecycle" />
+
+    <uses-feature android:name="android.hardware.camera"/>
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -19,6 +26,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BusinessTravelApp">
         <activity
+            android:name=".Activities.OCRActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activities.AdminActivity"
             android:exported="false" />
         <activity
@@ -36,6 +46,10 @@
         <activity
             android:name=".Activities.PhotoActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".OCR.Preference.SettingsActivity"
+            android:exported="false"/>
 
         <service
             android:name=".LocationServices.MyIntentService"
