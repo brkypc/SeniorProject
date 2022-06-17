@@ -118,43 +118,37 @@ public final class OCRActivity extends AppCompatActivity {
         confirmAmount = findViewById(R.id.confirmAmount);
         selectImage = findViewById(R.id.select_image_button);
 
-        confirmAmount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (amount.matches("\\d+(?:\\.\\d+)?")) {
-                    EditText edittext = new EditText(OCRActivity.this);
-                    edittext.setText(amount);
-                    edittext.setGravity(Gravity.CENTER);
-                    edittext.setInputType(InputType.TYPE_CLASS_NUMBER);
-                    AlertDialog.Builder alert = new AlertDialog.Builder(OCRActivity.this);
-                    alert.setMessage("Faturadan okunan tutarı onaylayınız");
-                    alert.setView(edittext);
-                    alert.setPositiveButton("Onayla", (dialog, whichButton) -> {
-                        String userInput = edittext.getText().toString();
-                        Intent intent = new Intent(OCRActivity.this, PhotoActivity.class);
-                        intent.putExtra("date", date);
-                        intent.putExtra("tripTime", tripTime);
-                        intent.putExtra("taxiType", taxiType);
-                        intent.putExtra("amount", calculatedPrice);
-                        intent.putExtra("distance", distance);
-                        intent.putExtra("ocr", userInput);
-                        startActivity(intent);
-                        finish();
-                        /*if(userInput.matches("\\d+(?:\\.\\d+)?")) {
-                            Toast.makeText(PhotoActivity.this, userInput, Toast.LENGTH_SHORT).show();
-                            saveToFirebase(userInput);
-                        }else {
-                            Toast.makeText(PhotoActivity.this,"Lütfen sadece sayı giriniz", Toast.LENGTH_SHORT).show();
-                        }*/
-                    });
-                    alert.setNegativeButton("İptal", null);
-
-                    alert.show();
-
-                } else {
+        confirmAmount.setOnClickListener(view -> {
+                if (amount.equalsIgnoreCase("0.0"))
                     Toast.makeText(OCRActivity.this, R.string.noAmountFound, Toast.LENGTH_SHORT).show();
-                }
-            }
+                EditText edittext = new EditText(OCRActivity.this);
+                edittext.setText(amount);
+                edittext.setGravity(Gravity.CENTER);
+                edittext.setInputType(InputType.TYPE_CLASS_NUMBER);
+                AlertDialog.Builder alert = new AlertDialog.Builder(OCRActivity.this);
+                alert.setMessage("Faturadan okunan tutarı onaylayınız");
+                alert.setView(edittext);
+                alert.setPositiveButton("Onayla", (dialog, whichButton) -> {
+                    String userInput = edittext.getText().toString();
+                    Intent intent = new Intent(OCRActivity.this, ResultActivity.class);
+                    intent.putExtra("date", date);
+                    intent.putExtra("tripTime", tripTime);
+                    intent.putExtra("taxiType", taxiType);
+                    intent.putExtra("amount", calculatedPrice);
+                    intent.putExtra("distance", distance);
+                    intent.putExtra("ocr", userInput);
+                    startActivity(intent);
+                    finish();
+                    /*if(userInput.matches("\\d+(?:\\.\\d+)?")) {
+                        Toast.makeText(PhotoActivity.this, userInput, Toast.LENGTH_SHORT).show();
+                        saveToFirebase(userInput);
+                    }else {
+                        Toast.makeText(PhotoActivity.this,"Lütfen sadece sayı giriniz", Toast.LENGTH_SHORT).show();
+                    }*/
+                });
+                alert.setNegativeButton("İptal", null);
+
+                alert.show();
         });
 
         if ((checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
@@ -594,16 +588,26 @@ public final class OCRActivity extends AppCompatActivity {
 
             amount = "0.0";
             for (String s : text) {
-                if (s.toLowerCase().contains("toplam")) {
+                if (s.toLowerCase().contains("top") || s.toLowerCase().contains("tup") || s.toLowerCase().contains("tdp")) {
+                    Log.d("test", "toplam stringi: " + s);
                     int index = text.indexOf(s);
-                    amount = text.get(index + 2);
+                    for (int i=1; i<=5; i++) {
+                        if(index + i < text.size()) {
+                            Log.d("test", "tutar: " + text.get(index+i));
+                            String read = text.get(index + i);
+                            read = read.replace(",", ".");
+                            if (read.matches("\\d+(?:\\.\\d+)?")) {
+                                amount = read;
+                                break;
+                            }
+                        }
+                    }
                     Log.d("test", "Toplam Tutar: " + amount + " Lira");
-                    amount = amount.replace(",", ".");
                 }
             }
 
             confirmAmount.setVisibility(View.VISIBLE);
-            selectImage.setText("Yeniden Çek");
+            selectImage.setText(R.string.take_again);
         }
     };
 }

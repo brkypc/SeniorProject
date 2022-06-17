@@ -11,8 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.ytu.businesstravelapp.R;
 import com.ytu.businesstravelapp.Classes.Trip;
+import com.ytu.businesstravelapp.R;
 
 import java.util.ArrayList;
 
@@ -32,7 +32,7 @@ public class TripsAdapter extends RecyclerView.Adapter<TripsAdapter.ViewHolder> 
     public TripsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view;
 
-            view = mInflater.inflate(R.layout.trip_item, parent, false);
+        view = mInflater.inflate(R.layout.trip_item, parent, false);
 
         return new ViewHolder(view);
     }
@@ -45,21 +45,23 @@ public class TripsAdapter extends RecyclerView.Adapter<TripsAdapter.ViewHolder> 
         holder.date.setText(trip.getDate());
         holder.tripTime.setText(trip.getTripTime());
         holder.distance.setText(trip.getDistance() + " km");
-        holder.amount.setText(trip.getAmount() + " ₺");
+        holder.billPrice.setText(trip.getBillPrice() + " ₺");
         if (trip.getTaxiType().equalsIgnoreCase("1"))
             holder.taxiPhoto.setImageResource(R.drawable.yellow_taxi);
-        else if(trip.getTaxiType().equalsIgnoreCase("2")){
+        else if (trip.getTaxiType().equalsIgnoreCase("2")) {
             holder.taxiPhoto.setImageResource(R.drawable.blue_taxi);
             holder.taxiPhoto.setScaleY((float) 1.15);
-        }
-        else {
+        } else {
             holder.taxiPhoto.setImageResource(R.drawable.black_taxi);
         }
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-            }
+        if (trip.getStatus().equalsIgnoreCase("yes")) {
+            holder.status.setImageResource(R.drawable.ic_approved);
+        } else {
+            holder.status.setImageResource(R.drawable.ic_not_approved);
+        }
+
+        holder.itemView.setOnClickListener(view -> {
         });
 
     }
@@ -70,8 +72,8 @@ public class TripsAdapter extends RecyclerView.Adapter<TripsAdapter.ViewHolder> 
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView date, distance, tripTime, amount;
-        ImageView taxiPhoto;
+        TextView date, distance, tripTime, billPrice;
+        ImageView taxiPhoto, status;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -79,8 +81,9 @@ public class TripsAdapter extends RecyclerView.Adapter<TripsAdapter.ViewHolder> 
             date = itemView.findViewById(R.id.date);
             distance = itemView.findViewById(R.id.itemDistance);
             tripTime = itemView.findViewById(R.id.tripTime);
-            amount = itemView.findViewById(R.id.itemAmount);
+            billPrice = itemView.findViewById(R.id.itemBillPrice);
             taxiPhoto = itemView.findViewById(R.id.taxiPhoto);
+            status = itemView.findViewById(R.id.statusItem);
 
         }
     }

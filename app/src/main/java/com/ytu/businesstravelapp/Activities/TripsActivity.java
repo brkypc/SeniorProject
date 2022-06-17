@@ -25,7 +25,6 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class TripsActivity extends AppCompatActivity {
-
     private RecyclerView rvTrips;
     private TripsAdapter tripsAdapter;
     private ArrayList<Trip> trips;
@@ -46,15 +45,6 @@ public class TripsActivity extends AppCompatActivity {
         trips = new ArrayList<>();
         FirebaseDatabase database = FirebaseDatabase.getInstance(firebaseURL);
         DatabaseReference tripRef = database.getReference("trips");
-
-        /*HashMap<String, Object> hashMap = new HashMap<>();
-        hashMap.put("date","4 Haziran 2022 14:22");
-        hashMap.put("tripTime", "23 dk");
-        hashMap.put("taxiType", "1");
-        hashMap.put("distance", "6.60");
-        hashMap.put("amount", "51.38");
-
-        tripRef.push().setValue(hashMap);*/
 
         Log.d("test1",tripRef.toString());
         tripRef.addValueEventListener(new ValueEventListener() {

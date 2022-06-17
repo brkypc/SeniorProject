@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#f2f2f2"
     tools:context=".Activities.TripsActivity">
 
     <TextView
@@ -13,14 +14,14 @@
         android:layout_gravity="center"
         android:layout_marginTop="5dp"
         android:fontFamily="@font/baloo"
-        android:text="Seyahatlerim"
+        android:text="@string/seyahatlerim"
         android:textColor="@color/black"
         android:textSize="18sp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvTrips"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="1"
         android:fitsSystemWindows="true"
         android:overScrollMode="never" />

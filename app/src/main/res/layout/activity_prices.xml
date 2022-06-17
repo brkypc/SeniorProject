@@ -14,12 +14,13 @@
 
         <ImageView
             android:id="@+id/imageView2"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
             android:layout_marginEnd="-50dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/yellow_taxi" />
+            app:srcCompat="@drawable/yellow_taxi"
+            android:contentDescription="@string/app_text" />
 
         <TextView
             android:id="@+id/textView"
@@ -27,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
-            android:text="6,30 ₺/km"
+            android:text="@string/_6_30_km"
             android:fontFamily="@font/muli"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
@@ -40,7 +41,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/muli"
-            android:text="Açılış Ücreti: 9,80₺"
+            android:text="@string/a_l_creti_9_80"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -51,9 +52,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
-            android:text="Sarı Taksi"
+            android:text="@string/sar_taksi"
             android:textStyle="bold"
-            android:textSize="10pt"
+            android:textSize="9pt"
             android:fontFamily="@font/baloo"
             android:textColor="@color/black"
             app:layout_constraintEnd_toStartOf="@+id/imageView2"
@@ -67,7 +68,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/muli"
-            android:text="İndi Bindi Ücreti: 28₺"
+            android:text="@string/ndi_bindi_creti_28"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView2" />
@@ -86,13 +87,14 @@
 
         <ImageView
             android:id="@+id/imageView3"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
             android:layout_marginEnd="-50dp"
             android:scaleY="1.15"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/blue_taxi" />
+            app:srcCompat="@drawable/blue_taxi"
+            android:contentDescription="@string/app_text" />
 
         <TextView
             android:id="@+id/textView5"
@@ -101,7 +103,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/muli"
-            android:text="7,25 ₺/km"
+            android:text="@string/_7_25_km"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView7" />
@@ -112,7 +114,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
-            android:text="Açılış Ücreti: 11,27₺"
+            android:text="@string/a_l_creti_11_27"
             android:fontFamily="@font/muli"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
@@ -123,10 +125,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:text="Turkuaz Taksi"
+            android:text="@string/turkuaz_taksi"
             android:textStyle="bold"
-            android:textSize="10pt"
+            android:textSize="9pt"
             android:textColor="@color/black"
             android:fontFamily="@font/baloo"
             app:layout_constraintEnd_toStartOf="@+id/imageView3"
@@ -139,7 +140,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
-            android:text="İndi Bindi Ücreti: 32,20₺"
+            android:text="@string/ndi_bindi_creti_32_20"
             android:fontFamily="@font/muli"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
@@ -159,13 +160,14 @@
 
         <ImageView
             android:id="@+id/imageView4"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
             android:layout_marginEnd="-50dp"
             android:scaleX="1.15"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/black_taxi" />
+            app:srcCompat="@drawable/black_taxi"
+            android:contentDescription="@string/app_text" />
 
         <TextView
             android:id="@+id/textView9"
@@ -173,7 +175,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
-            android:text="10,71 ₺/km"
+            android:text="@string/_10_71_km"
             android:fontFamily="@font/muli"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
@@ -185,7 +187,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
-            android:text="Açılış Ücreti: 16,66₺"
+            android:text="@string/a_l_creti_16_66"
             android:fontFamily="@font/muli"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
@@ -196,11 +198,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:text="Siyah Taksi"
+            android:text="@string/siyah_taksi"
             android:fontFamily="@font/baloo"
             android:textStyle="bold"
-            android:textSize="10pt"
+            android:textSize="9pt"
             android:textColor="@color/black"
             app:layout_constraintEnd_toStartOf="@+id/imageView4"
             app:layout_constraintStart_toStartOf="parent"
@@ -212,11 +213,16 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
-            android:text="İndi Bindi Ücreti: 47,60₺"
+            android:text="@string/ndi_bindi_creti_47_60"
             android:fontFamily="@font/muli"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/black" />
 </LinearLayout>

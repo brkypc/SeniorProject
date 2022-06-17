@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:padding="50dp"
     android:background="#f2f2f2"
-    tools:context=".Activities.PhotoActivity">
+    tools:context=".Activities.ResultActivity">
 
 
     <TextView
@@ -17,38 +17,38 @@
         android:textAlignment="center"
         android:gravity="center"
         android:layout_gravity="center_horizontal"
-        android:text="Seyahat Raporunuz"
+        android:text="@string/seyahat_raporunuz"
         android:textStyle="bold"
         android:fontFamily="@font/muli_black"
         android:textSize="20pt"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="330dp"
+        android:layout_width="340dp"
         android:layout_gravity="center"
-        android:padding="20dp"
+        android:padding="40dp"
         android:layout_marginTop="25dp"
-        android:layout_height="150dp">
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/distanceText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:textSize="7pt"
+            android:textSize="9pt"
             android:fontFamily="@font/muli_black"
-            android:text="Gidilen Mesafe:"
+            android:text="@string/gidilen_mesafe"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
             android:id="@+id/distance"
-            android:layout_width="70dp"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:text="2 km"
+            android:text="@string/_2_km"
             android:textStyle="bold"
             android:fontFamily="@font/muli_black"
             android:textColor="@color/black"
-            android:textSize="7pt"
+            android:textSize="9pt"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -58,24 +58,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:textSize="7pt"
+            android:textSize="9pt"
            android:layout_marginTop="10dp"
             android:fontFamily="@font/muli_black"
-            android:text="Hesaplanan Tutar:"
+            android:text="@string/hesaplanan_tutar"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/distanceText"
             app:layout_constraintBottom_toTopOf="@+id/ocrText"/>
 
         <TextView
             android:id="@+id/amount"
-            android:layout_width="70dp"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:text="₺45"
+            android:text="@string/_45"
             android:layout_marginTop="10dp"
             android:textStyle="bold"
             android:fontFamily="@font/muli_black"
             android:textColor="@color/black"
-            android:textSize="7pt"
+            android:textSize="9pt"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/distanceText"
             app:layout_constraintBottom_toTopOf="@+id/ocrAmount"/>
@@ -85,24 +85,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:textSize="7pt"
+            android:textSize="9pt"
             android:fontFamily="@font/muli_black"
             android:layout_marginTop="10dp"
-            android:text="Fiş Tutarı:"
+            android:text="@string/fi_tutar"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/amountText"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
         <TextView
             android:id="@+id/ocrAmount"
-            android:layout_width="70dp"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:text="₺344.32"
+            android:text="@string/_344_32"
             android:textStyle="bold"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/muli_black"
             android:textColor="@color/black"
-            android:textSize="7pt"
+            android:textSize="9pt"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/amount"
             app:layout_constraintBottom_toBottomOf="parent"/>
@@ -115,7 +115,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="25dp"
-        android:text="Seyahati Kaydet"
+        android:text="@string/seyahati_kaydet"
         android:fontFamily="@font/muli_black"
         android:textAllCaps="false"
         android:textSize="9pt"

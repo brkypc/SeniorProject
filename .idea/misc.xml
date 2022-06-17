@@ -18,14 +18,17 @@
         <entry key="..\:/Users/brkyy/AndroidStudioProjects/BusinessTravelApp/app/src/main/res/font/muli.xml" value="0.17578125" />
         <entry key="..\:/Users/brkyy/AndroidStudioProjects/BusinessTravelApp/app/src/main/res/font/muli_black.xml" value="0.17578125" />
         <entry key="..\:/Users/brkyy/AndroidStudioProjects/BusinessTravelApp/app/src/main/res/font/muli_extralight.xml" value="1.6071428571428572" />
+        <entry key="..\:/Users/brkyy/AndroidStudioProjects/BusinessTravelApp/app/src/main/res/layout/activity_about.xml" value="0.2" />
         <entry key="..\:/Users/brkyy/AndroidStudioProjects/BusinessTravelApp/app/src/main/res/layout/activity_admin.xml" value="0.25" />
         <entry key="..\:/Users/brkyy/AndroidStudioProjects/BusinessTravelApp/app/src/main/res/layout/activity_chooser.xml" value="0.1" />
+        <entry key="..\:/Users/brkyy/AndroidStudioProjects/BusinessTravelApp/app/src/main/res/layout/activity_faqactivity.xml" value="0.153125" />
         <entry key="..\:/Users/brkyy/AndroidStudioProjects/BusinessTravelApp/app/src/main/res/layout/activity_home.xml" value="0.18" />
         <entry key="..\:/Users/brkyy/AndroidStudioProjects/BusinessTravelApp/app/src/main/res/layout/activity_login.xml" value="0.16" />
         <entry key="..\:/Users/brkyy/AndroidStudioProjects/BusinessTravelApp/app/src/main/res/layout/activity_main.xml" value="0.19" />
         <entry key="..\:/Users/brkyy/AndroidStudioProjects/BusinessTravelApp/app/src/main/res/layout/activity_ocr.xml" value="0.22" />
-        <entry key="..\:/Users/brkyy/AndroidStudioProjects/BusinessTravelApp/app/src/main/res/layout/activity_photo.xml" value="0.2" />
-        <entry key="..\:/Users/brkyy/AndroidStudioProjects/BusinessTravelApp/app/src/main/res/layout/activity_prices.xml" value="0.25" />
+        <entry key="..\:/Users/brkyy/AndroidStudioProjects/BusinessTravelApp/app/src/main/res/layout/activity_photo.xml" value="0.33" />
+        <entry key="..\:/Users/brkyy/AndroidStudioProjects/BusinessTravelApp/app/src/main/res/layout/activity_prices.xml" value="0.22" />
+        <entry key="..\:/Users/brkyy/AndroidStudioProjects/BusinessTravelApp/app/src/main/res/layout/activity_result.xml" value="0.1" />
         <entry key="..\:/Users/brkyy/AndroidStudioProjects/BusinessTravelApp/app/src/main/res/layout/activity_settings.xml" value="0.1" />
         <entry key="..\:/Users/brkyy/AndroidStudioProjects/BusinessTravelApp/app/src/main/res/layout/activity_still_image.xml" value="0.18" />
         <entry key="..\:/Users/brkyy/AndroidStudioProjects/BusinessTravelApp/app/src/main/res/layout/activity_trips.xml" value="0.25" />
@@ -35,8 +38,9 @@
         <entry key="..\:/Users/brkyy/AndroidStudioProjects/BusinessTravelApp/app/src/main/res/layout/item_bg.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/brkyy/AndroidStudioProjects/BusinessTravelApp/app/src/main/res/layout/settings_style.xml" value="0.13490437158469945" />
         <entry key="..\:/Users/brkyy/AndroidStudioProjects/BusinessTravelApp/app/src/main/res/layout/taxi_item.xml" value="0.33" />
+        <entry key="..\:/Users/brkyy/AndroidStudioProjects/BusinessTravelApp/app/src/main/res/layout/toggle_style.xml" value="0.13490437158469945" />
         <entry key="..\:/Users/brkyy/AndroidStudioProjects/BusinessTravelApp/app/src/main/res/layout/trip_dialog.xml" value="0.33" />
-        <entry key="..\:/Users/brkyy/AndroidStudioProjects/BusinessTravelApp/app/src/main/res/layout/trip_item.xml" value="0.25" />
+        <entry key="..\:/Users/brkyy/AndroidStudioProjects/BusinessTravelApp/app/src/main/res/layout/trip_item.xml" value="0.33" />
         <entry key="..\:/Users/brkyy/AndroidStudioProjects/BusinessTravelApp/app/src/main/res/menu/bottom_nav_menu.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/brkyy/AndroidStudioProjects/BusinessTravelApp/app/src/main/res/menu/camera_button_menu.xml" value="0.15537059056678557" />
         <entry key="..\:/Users/brkyy/AndroidStudioProjects/BusinessTravelApp/app/src/main/res/xml/preference_live_preview_quickstart.xml" value="0.12" />

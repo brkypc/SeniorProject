@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">BusinessTravelApp</string>
     <string name="receipt">receipt</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="noAmountFound">Tutar tespit edilemedi</string>
     <string name="app_text">Business Travel</string>
+    <string name="about_text">Business Travel uygulaması Prof. Dr. Banu Diri önderliğinde Ahmet Yaman &amp; Berkay Yapıcı tarafından geliştirilmiştir. İş amaçlı seyahat eden çalışanın, taksi faturasını muhasebeleştirme süreçlerini kolaylaştırmasını sağlıyoruz.</string>
     <string name="java_entry_title" translatable="false">Run the ML Kit quickstart written in Java</string>
     <string name="kotlin_entry_title" translatable="false">Run the ML Kit quickstart written in Kotlin</string>
     <string name="ok" translatable="false">OK</string>
@@ -153,4 +153,36 @@
     <!-- Strings for segmentation preference. -->
     <string name="pref_title_segmentation_raw_size_mask" translatable="false">Enable raw size mask</string>
     <string name="pref_key_segmentation_raw_size_mask" translatable="false">srsm</string>
+    <string name="about">Hakkında</string>
+    <string name="faq">Sık Sorulan Sorular</string>
+    <string name="seyahati_kaydet">Seyahati Kaydet</string>
+    <string name="_344_32">₺344.32</string>
+    <string name="fi_tutar">Fiş Tutarı:</string>
+    <string name="seyahat_raporunuz">Seyahat Raporunuz</string>
+    <string name="gidilen_mesafe">Gidilen Mesafe:</string>
+    <string name="_2_km">2 km</string>
+    <string name="hesaplanan_tutar">Hesaplanan Tutar:</string>
+    <string name="_45">₺45</string>
+    <string name="_6_30_km">6,30 ₺/km</string>
+    <string name="a_l_creti_9_80">Açılış Ücreti: 9,80₺</string>
+    <string name="sar_taksi">Sarı Taksi</string>
+    <string name="ndi_bindi_creti_28">İndi Bindi Ücreti: 28₺</string>
+    <string name="_7_25_km">7,25 ₺/km</string>
+    <string name="a_l_creti_11_27">Açılış Ücreti: 11,27₺</string>
+    <string name="turkuaz_taksi">Turkuaz Taksi</string>
+    <string name="ndi_bindi_creti_32_20">İndi Bindi Ücreti: 32,20₺</string>
+    <string name="_10_71_km">10,71 ₺/km</string>
+    <string name="a_l_creti_16_66">Açılış Ücreti: 16,66₺</string>
+    <string name="siyah_taksi">Siyah Taksi</string>
+    <string name="ndi_bindi_creti_47_60">İndi Bindi Ücreti: 47,60₺</string>
+    <string name="seyahatlerim">Seyahatlerim</string>
+    <string name="_12_haziran_2020_15_55">12 Haziran 2020 15.55</string>
+    <string name="_55_km">55 km</string>
+    <string name="_35_dk">35 dk</string>
+    <string name="_550">550₺</string>
+    <string name="e_posta">E-Posta</string>
+    <string name="sifre">Şifre</string>
+    <string name="sifremi_unuttum">Şifremi Unuttum</string>
+    <string name="giris_yap">Giriş Yap</string>
+    <string name="take_again">Yeniden Çek</string>
 </resources>

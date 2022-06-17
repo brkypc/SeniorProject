@@ -15,6 +15,8 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.ytu.businesstravelapp.Activities.AboutActivity;
+import com.ytu.businesstravelapp.Activities.FAQActivity;
 import com.ytu.businesstravelapp.Activities.MainActivity;
 import com.ytu.businesstravelapp.Activities.PricesActivity;
 import com.ytu.businesstravelapp.R;
@@ -29,7 +31,7 @@ public class ProfileFragment extends Fragment {
     @SuppressLint("SetTextI18n")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View view =  inflater.inflate(R.layout.fragment_profile, container, false);
 
         TextView name = view.findViewById(R.id.name);
@@ -52,27 +54,32 @@ public class ProfileFragment extends Fragment {
             email.setText(uEmail);
         }
 
-
         AppCompatButton tripsButton = view.findViewById(R.id.prevTrips);
-        tripsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(requireContext(), TripsActivity.class);
-                startActivity(intent);
-            }
+        tripsButton.setOnClickListener(view14 -> {
+            Intent intent = new Intent(requireContext(), TripsActivity.class);
+            startActivity(intent);
         });
 
         AppCompatButton pricesButton = view.findViewById(R.id.prices);
-        pricesButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(requireContext(), PricesActivity.class);
-                startActivity(intent);
-            }
+        pricesButton.setOnClickListener(view13 -> {
+            Intent intent = new Intent(requireContext(), PricesActivity.class);
+            startActivity(intent);
+        });
+
+        AppCompatButton about = view.findViewById(R.id.about);
+        about.setOnClickListener(view12 -> {
+            Intent intent = new Intent(requireContext(), AboutActivity.class);
+            startActivity(intent);
+        });
+
+        AppCompatButton faq = view.findViewById(R.id.faq);
+        faq.setOnClickListener(view11 -> {
+            Intent intent = new Intent(requireContext(), FAQActivity.class);
+            startActivity(intent);
         });
 
         AppCompatButton logoutButton = view.findViewById(R.id.logout);
-        logoutButton.setOnClickListener(view1 -> new AlertDialog.Builder(requireContext())
+        logoutButton.setOnClickListener(view10 -> new AlertDialog.Builder(requireContext())
                 .setMessage("Çıkış yapmak istiyor musunuz?")
                 .setPositiveButton("Evet", (dialog, whichButton) -> {
                     FirebaseAuth.getInstance().signOut();

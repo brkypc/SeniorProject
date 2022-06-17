@@ -4,25 +4,10 @@ import static com.ytu.businesstravelapp.Activities.MainActivity.firebaseURL;
 
 import static java.lang.Math.max;
 
-import android.Manifest;
-import android.app.AlertDialog;
-import android.content.ContentValues;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.res.Configuration;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.text.InputType;
-import android.util.Base64;
 import android.util.Log;
-import android.util.Pair;
-import android.view.Gravity;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,42 +15,24 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.functions.FirebaseFunctions;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.google.gson.JsonPrimitive;
-import com.google.mlkit.vision.common.InputImage;
-import com.google.mlkit.vision.text.Text;
-import com.google.mlkit.vision.text.TextRecognition;
-import com.google.mlkit.vision.text.TextRecognizer;
-import com.google.mlkit.vision.text.latin.TextRecognizerOptions;
-import com.ytu.businesstravelapp.OCR.CameraSettings.BitmapUtils;
-import com.ytu.businesstravelapp.OCR.CameraSettings.GraphicOverlay;
 import com.ytu.businesstravelapp.R;
-import com.ytu.businesstravelapp.OCR.CameraSettings.VisionImageProcessor;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.text.MessageFormat;
 import java.util.HashMap;
 import java.util.Objects;
 
-public class PhotoActivity extends AppCompatActivity {
+public class ResultActivity extends AppCompatActivity {
     private static final int MY_CAMERA_PERMISSION_CODE = 100;
     private String distance, date, tripTime, taxiType, calculatedPrice, ocrResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_photo);
+        setContentView(R.layout.activity_result);
 
         Intent intent = getIntent();
         distance = intent.getStringExtra("distance");
@@ -84,9 +51,7 @@ public class PhotoActivity extends AppCompatActivity {
         amountField.setText(MessageFormat.format("{0} ₺", calculatedPrice));
         ocrField.setText(MessageFormat.format("{0} ₺", ocrResult));
 
-        saveDatabase.setOnClickListener(view -> {
-            saveToFirebase(ocrResult);
-        });
+        saveDatabase.setOnClickListener(view -> saveToFirebase(ocrResult));
     }
 
 
@@ -131,8 +96,8 @@ public class PhotoActivity extends AppCompatActivity {
         hashMap.put("status", status);
 
         //tripRef.push().setValue(hashMap);
-        Toast.makeText(PhotoActivity.this, "Seyahatiniz kaydedildi", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(PhotoActivity.this, TripsActivity.class);
+        Toast.makeText(ResultActivity.this, "Seyahatiniz kaydedildi", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(ResultActivity.this, TripsActivity.class);
         startActivity(intent);
         finish();
     }

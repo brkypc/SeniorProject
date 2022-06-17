@@ -2,12 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.ytu.businesstravelapp">
-    <uses-sdk
-        tools:overrideLibrary="
-          androidx.camera.camera2, androidx.camera.core,
-          androidx.camera.view, androidx.camera.lifecycle" />
 
-    <uses-feature android:name="android.hardware.camera"/>
+    <uses-sdk tools:overrideLibrary="           androidx.camera.camera2, androidx.camera.core,           androidx.camera.view, androidx.camera.lifecycle" />
+
+    <uses-feature android:name="android.hardware.camera" />
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -25,6 +23,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BusinessTravelApp">
+        <activity
+            android:name=".Activities.FAQActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.AboutActivity"
+            android:exported="false" />
         <activity
             android:name=".Activities.OCRActivity"
             android:exported="false" />
@@ -44,12 +48,11 @@
             android:name=".Activities.HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.PhotoActivity"
+            android:name=".Activities.ResultActivity"
             android:exported="false" />
-
         <activity
             android:name=".OCR.Preference.SettingsActivity"
-            android:exported="false"/>
+            android:exported="false" />
 
         <service
             android:name=".LocationServices.MyIntentService"
