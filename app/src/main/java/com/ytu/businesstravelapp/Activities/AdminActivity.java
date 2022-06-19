@@ -2,19 +2,18 @@ package com.ytu.businesstravelapp.Activities;
 
 import static com.ytu.businesstravelapp.Activities.MainActivity.firebaseURL;
 
+import android.app.AlertDialog;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.ImageView;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.app.AlertDialog;
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.ImageView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -23,8 +22,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.ytu.businesstravelapp.Adapters.AdminTripsAdapter;
-import com.ytu.businesstravelapp.R;
 import com.ytu.businesstravelapp.Classes.Trip;
+import com.ytu.businesstravelapp.R;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -40,27 +39,21 @@ public class AdminActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin);
 
         ImageView logout = findViewById(R.id.adminLogout);
-        logout.setOnClickListener(view -> {
-            new AlertDialog.Builder(this)
-                    .setMessage("Çıkış yapmak istiyor musunuz?")
-                    .setPositiveButton("Evet", (dialog, whichButton) -> {
-                        FirebaseAuth.getInstance().signOut();
-                        Intent intent = new Intent(AdminActivity.this, MainActivity.class);
-                        startActivity(intent);
-                        finish();
-                    })
-                    .setNegativeButton("Hayır", null).show();
-
-        });
+        logout.setOnClickListener(view -> new AlertDialog.Builder(this)
+                .setMessage("Çıkış yapmak istiyor musunuz?")
+                .setPositiveButton("Evet", (dialog, whichButton) -> {
+                    FirebaseAuth.getInstance().signOut();
+                    Intent intent = new Intent(AdminActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                })
+                .setNegativeButton("Hayır", null).show());
 
         ImageView settings = findViewById(R.id.adminSettings);
-        settings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(AdminActivity.this, PricesActivity.class);
-                intent.putExtra("user", "admin");
-                startActivity(intent);
-            }
+        settings.setOnClickListener(view -> {
+            Intent intent = new Intent(AdminActivity.this, PricesActivity.class);
+            intent.putExtra("user", "admin");
+            startActivity(intent);
         });
 
         rvTrips = findViewById(R.id.rvAdminTrips);

@@ -2,9 +2,6 @@ package com.ytu.businesstravelapp.Activities;
 
 import static com.ytu.businesstravelapp.Activities.MainActivity.firebaseURL;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -12,19 +9,18 @@ import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.ytu.businesstravelapp.Adapters.TripsAdapter;
 import com.ytu.businesstravelapp.Classes.Price;
-import com.ytu.businesstravelapp.Classes.Trip;
 import com.ytu.businesstravelapp.R;
 
 import java.util.ArrayList;
@@ -57,7 +53,6 @@ public class PricesActivity extends AppCompatActivity {
         textView9.setOnClickListener(view -> createDialog(blackPrice.getKm(), 3, "km"));
         textView10.setOnClickListener(view -> createDialog(blackPrice.getOpening(), 3, "opening"));
         textView12.setOnClickListener(view -> createDialog(blackPrice.getIndibindi(), 3, "indibindi"));
-
     }
     private void createDialog(String amount, int type, String child) {
         EditText edittext = new EditText(PricesActivity.this);
@@ -86,7 +81,6 @@ public class PricesActivity extends AppCompatActivity {
         alert.setNegativeButton("İptal", null);
 
         alert.show();
-
     }
 
     private void defineFields() {
@@ -127,7 +121,6 @@ public class PricesActivity extends AppCompatActivity {
                 bluePrice = prices.get(1);
                 yellowPrice = prices.get(2);
 
-
                 textView.setText(yellowPrice.getKm() + " ₺/km");
                 textView2.setText("Açılış Ücreti: " + yellowPrice.getOpening() + "₺");
                 textView4.setText("İndi Bindi Ücreti: " + yellowPrice.getIndibindi() + "₺");
@@ -137,7 +130,6 @@ public class PricesActivity extends AppCompatActivity {
                 textView9.setText(blackPrice.getKm() + " ₺/km");
                 textView10.setText("Açılış Ücreti: " + blackPrice.getOpening() + "₺");
                 textView12.setText("İndi Bindi Ücreti: " + blackPrice.getIndibindi() + "₺");
-
             }
 
             @Override
