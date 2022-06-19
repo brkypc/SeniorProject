@@ -26,7 +26,6 @@ import java.util.HashMap;
 import java.util.Objects;
 
 public class ResultActivity extends AppCompatActivity {
-    private static final int MY_CAMERA_PERMISSION_CODE = 100;
     private String distance, date, tripTime, taxiType, calculatedPrice, ocrResult;
 
     @Override
@@ -101,18 +100,4 @@ public class ResultActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
-
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == MY_CAMERA_PERMISSION_CODE) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
-                //chooseImage(PhotoActivity.this);
-            } else {
-                Toast.makeText(this, "İzin reddedildi.", Toast.LENGTH_LONG).show();
-            }
-        }
-    }
-
 }
