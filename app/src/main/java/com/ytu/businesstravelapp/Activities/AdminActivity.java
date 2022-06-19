@@ -13,6 +13,7 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -50,6 +51,16 @@ public class AdminActivity extends AppCompatActivity {
                     })
                     .setNegativeButton("Hayır", null).show();
 
+        });
+
+        ImageView settings = findViewById(R.id.adminSettings);
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AdminActivity.this, PricesActivity.class);
+                intent.putExtra("user", "admin");
+                startActivity(intent);
+            }
         });
 
         rvTrips = findViewById(R.id.rvAdminTrips);

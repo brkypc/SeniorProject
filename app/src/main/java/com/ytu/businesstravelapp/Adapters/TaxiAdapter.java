@@ -39,6 +39,7 @@ public class TaxiAdapter extends RecyclerView.Adapter<TaxiAdapter.ViewHolder> {
     private IncomingMessageHandler mHandler;
     private Date startTime, endTime;
 
+
     public TaxiAdapter(Context context, ArrayList<Taxi> taxis) {
         this.context = context;
         this.mInflater = LayoutInflater.from(context);

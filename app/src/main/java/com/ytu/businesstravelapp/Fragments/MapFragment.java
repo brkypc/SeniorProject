@@ -1,5 +1,7 @@
 package com.ytu.businesstravelapp.Fragments;
 
+import static com.ytu.businesstravelapp.Activities.MainActivity.firebaseURL;
+
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -26,6 +28,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdate;
@@ -35,6 +38,12 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.ytu.businesstravelapp.Classes.Price;
 import com.ytu.businesstravelapp.LocationServices.MyIntentService;
 import com.ytu.businesstravelapp.R;
 import com.ytu.businesstravelapp.Classes.Taxi;
@@ -59,6 +68,9 @@ public class MapFragment extends Fragment implements GoogleMap.OnMyLocationButto
     private RecyclerView rvTaxis;
     private TaxiAdapter taxiAdapter;
     private ArrayList<Taxi> taxis;
+    private ArrayList<Price> prices;
+    private Price blackPrice, bluePrice, yellowPrice;
+    private FirebaseDatabase database;
 
     public MapFragment() {
         // Required empty public constructor
@@ -76,11 +88,50 @@ public class MapFragment extends Fragment implements GoogleMap.OnMyLocationButto
         snapHelper.attachToRecyclerView(rvTaxis);
 
         taxis = new ArrayList<>();
-        taxis.add(new Taxi("1", "9.80", "6.30", "28"));
-        taxis.add(new Taxi("2", "11.27", "7.25", "32.20"));
-        taxis.add(new Taxi("3", "16.66", "10.71", "47.60"));
-        taxiAdapter = new TaxiAdapter(requireContext(), taxis);
-        rvTaxis.setAdapter(taxiAdapter);
+        prices = new ArrayList<>();
+
+        database = FirebaseDatabase.getInstance(firebaseURL);
+        DatabaseReference priceRef = database.getReference("prices");
+
+        Log.d("test1", priceRef.toString());
+        priceRef.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                prices.clear();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    Price price= dataSnapshot.getValue(Price.class);
+
+                    if (price != null) {
+                        prices.add(price);
+                        Log.d("test1","price null değil");
+                    }
+                    else {
+                        Log.d("test1","price null");
+                    }
+                }
+                blackPrice = prices.get(0);
+                bluePrice = prices.get(1);
+                yellowPrice = prices.get(2);
+
+                taxis.add(new Taxi("1", yellowPrice.getOpening(), yellowPrice.getKm(), yellowPrice.getIndibindi()));
+                taxis.add(new Taxi("2", bluePrice.getOpening(), bluePrice.getKm() , bluePrice.getIndibindi()));
+                taxis.add(new Taxi("3", blackPrice.getOpening(), blackPrice.getKm(), blackPrice.getIndibindi()));
+
+                taxiAdapter = new TaxiAdapter(requireContext(), taxis);
+                rvTaxis.setAdapter(taxiAdapter);
+                Log.d("test1",prices.size() + "");
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.d("test1",error.toString());
+            }
+        });
+
+
+
+
 
 
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.googleMap);
