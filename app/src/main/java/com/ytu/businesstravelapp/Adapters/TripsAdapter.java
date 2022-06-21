@@ -19,10 +19,8 @@ import java.util.ArrayList;
 public class TripsAdapter extends RecyclerView.Adapter<TripsAdapter.ViewHolder> {
     private final LayoutInflater mInflater;
     private final ArrayList<Trip> trips;
-    private final Context context;
 
     public TripsAdapter(Context context, ArrayList<Trip> trips) {
-        this.context = context;
         this.mInflater = LayoutInflater.from(context);
         this.trips = trips;
     }

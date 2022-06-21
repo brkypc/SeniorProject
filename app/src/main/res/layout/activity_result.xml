@@ -4,51 +4,50 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#f2f2f2"
     android:orientation="vertical"
     android:padding="50dp"
-    android:background="#f2f2f2"
     tools:context=".Activities.ResultActivity">
-
 
     <TextView
         android:id="@+id/report"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:gravity="center"
         android:layout_gravity="center_horizontal"
-        android:text="@string/seyahat_raporunuz"
-        android:textStyle="bold"
         android:fontFamily="@font/muli_black"
-        android:textSize="20pt"/>
+        android:gravity="center"
+        android:text="@string/seyahat_raporunuz"
+        android:textAlignment="center"
+        android:textSize="20pt"
+        android:textStyle="bold" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="340dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:padding="40dp"
         android:layout_marginTop="25dp"
-        android:layout_height="wrap_content">
+        android:padding="40dp">
 
         <TextView
             android:id="@+id/distanceText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textSize="9pt"
             android:fontFamily="@font/muli_black"
             android:text="@string/gidilen_mesafe"
+            android:textColor="@color/black"
+            android:textSize="9pt"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/distance"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:text="@string/_2_km"
-            android:textStyle="bold"
             android:fontFamily="@font/muli_black"
+            android:text="@string/_2_km"
             android:textColor="@color/black"
             android:textSize="9pt"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -57,57 +56,64 @@
             android:id="@+id/amountText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textSize="9pt"
-           android:layout_marginTop="10dp"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/muli_black"
             android:text="@string/hesaplanan_tutar"
+            android:textColor="@color/black"
+            android:textSize="9pt"
+            app:layout_constraintBottom_toTopOf="@+id/ocrText"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/distanceText"
-            app:layout_constraintBottom_toTopOf="@+id/ocrText"/>
+            app:layout_constraintTop_toBottomOf="@+id/distanceText" />
 
         <TextView
             android:id="@+id/amount"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:text="@string/_45"
             android:layout_marginTop="10dp"
-            android:textStyle="bold"
             android:fontFamily="@font/muli_black"
+            android:text="@string/_45"
             android:textColor="@color/black"
             android:textSize="9pt"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/ocrAmount"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/distanceText"
-            app:layout_constraintBottom_toTopOf="@+id/ocrAmount"/>
+            app:layout_constraintTop_toBottomOf="@+id/distanceText" />
 
         <TextView
             android:id="@+id/ocrText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/muli_black"
+            android:text="@string/fi_tutar"
             android:textColor="@color/black"
             android:textSize="9pt"
-            android:fontFamily="@font/muli_black"
-            android:layout_marginTop="10dp"
-            android:text="@string/fi_tutar"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/amountText"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@+id/amountText" />
 
         <TextView
             android:id="@+id/ocrAmount"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:text="@string/_344_32"
-            android:textStyle="bold"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/muli_black"
+            android:text="@string/_344_32"
             android:textColor="@color/black"
             android:textSize="9pt"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/amount"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@+id/amount" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <fragment
+        android:id="@+id/reportMap"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        tools:ignore="FragmentTagUsage" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/saveDatabase"
@@ -115,11 +121,11 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="25dp"
-        android:text="@string/seyahati_kaydet"
+        android:background="@drawable/receipt_btn"
         android:fontFamily="@font/muli_black"
+        android:text="@string/seyahati_kaydet"
         android:textAllCaps="false"
-        android:textSize="9pt"
         android:textColor="@color/white"
-        android:background="@drawable/receipt_btn"/>
+        android:textSize="9pt" />
 
 </LinearLayout>

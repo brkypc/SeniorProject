@@ -1,6 +1,7 @@
 package com.ytu.businesstravelapp.LocationServices;
 
 import static com.ytu.businesstravelapp.Fragments.MapFragment.MESSENGER_INTENT_KEY;
+import static com.ytu.businesstravelapp.Fragments.MapFragment.MESSENGER_INTENT_KEY2;
 
 import android.app.IntentService;
 import android.content.Intent;
@@ -13,18 +14,13 @@ import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 
-/**
- * An {@link IntentService} subclass for handling asynchronous task requests in
- * a service on a separate handler thread.
- * <p>
- * helper methods.
- */
 public class MyIntentService extends IntentService implements LocationUpdatesComponent.ILocationProvider {
-    private static final String TAG = MyIntentService.class.getSimpleName();
+    private static final String TAG = "ytuLog";
     public static final int LOCATION_MESSAGE = 999;
+    public static final int LOCATION_MESSAGE2 = 998;
 
     private LocationUpdatesComponent locationUpdatesComponent;
-    private Messenger mActivityMessenger;
+    private Messenger mActivityMessenger, mActivityMessenger2;
 
     public MyIntentService() {
         super("MyIntentService");
@@ -40,15 +36,15 @@ public class MyIntentService extends IntentService implements LocationUpdatesCom
         locationUpdatesComponent.onCreate(this);
     }
 
-    // this makes service running continuously,,commenting this start command method service runs only once
+
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.i(TAG, "onStartCommand Service started....");
         if (intent != null) {
             mActivityMessenger = intent.getParcelableExtra(MESSENGER_INTENT_KEY);
+            mActivityMessenger2 = intent.getParcelableExtra(MESSENGER_INTENT_KEY2);
         }
 
-        //hey request for location updates
         locationUpdatesComponent.onStart();
         return START_STICKY;
     }
@@ -58,6 +54,9 @@ public class MyIntentService extends IntentService implements LocationUpdatesCom
         super.onDestroy();
         Log.i(TAG, "onDestroy...");
 
+        sendMessage(LOCATION_MESSAGE, null);
+        sendMessage(LOCATION_MESSAGE2, null);
+
         locationUpdatesComponent.onStop();
     }
 
@@ -66,26 +65,25 @@ public class MyIntentService extends IntentService implements LocationUpdatesCom
         Log.i(TAG, "onHandleIntent" + intent);
         if (intent != null) {
             final String action = intent.getAction();
+            Log.i(TAG, "action" + action);
         }
     }
 
-    /**
-     * send message by using messenger
-     *
-     * @param messageID
-     */
+
     private void sendMessage(int messageID, Location location) {
-        // If this service is launched by the JobScheduler, there's no callback Messenger. It
-        // only exists when the MainActivity calls startService() with the callback in the Intent.
         if (mActivityMessenger == null) {
-            Log.d(TAG, "Service is bound, not started. There's no callback to send a message to.");
             return;
         }
+
         Message m = Message.obtain();
         m.what = messageID;
-        m.obj = location;
+        if(location == null ) { m.obj = "finished"; }
+        else { m.obj = location; }
         try {
-            mActivityMessenger.send(m);
+            if (messageID == LOCATION_MESSAGE)
+                mActivityMessenger.send(m);
+            else
+                mActivityMessenger2.send(m);
         } catch (RemoteException e) {
             Log.e(TAG, "Error passing service object back to activity.");
         }
@@ -94,5 +92,6 @@ public class MyIntentService extends IntentService implements LocationUpdatesCom
     @Override
     public void onLocationUpdate(Location location) {
         sendMessage(LOCATION_MESSAGE, location);
+        sendMessage(LOCATION_MESSAGE2, location);
     }
 }

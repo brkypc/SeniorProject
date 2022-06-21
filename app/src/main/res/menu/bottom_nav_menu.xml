@@ -2,10 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/mapButton"
-        android:title="Harita"
+        android:title="@string/harita"
         android:icon="@drawable/ic_map"/>
     <item
         android:id="@+id/profileButton"
-        android:title="Profil"
+        android:title="@string/profil"
         android:icon="@drawable/ic_person"/>
 </menu>

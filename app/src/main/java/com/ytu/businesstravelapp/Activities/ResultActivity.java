@@ -2,31 +2,47 @@ package com.ytu.businesstravelapp.Activities;
 
 import static com.ytu.businesstravelapp.Activities.MainActivity.firebaseURL;
 
-import static java.lang.Math.max;
-
 import android.content.Intent;
-import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.maps.DirectionsApi;
+import com.google.maps.DirectionsApiRequest;
+import com.google.maps.GeoApiContext;
+import com.google.maps.model.DirectionsLeg;
+import com.google.maps.model.DirectionsResult;
+import com.google.maps.model.DirectionsRoute;
+import com.google.maps.model.DirectionsStep;
+import com.google.maps.model.EncodedPolyline;
 import com.ytu.businesstravelapp.R;
 
 import java.text.MessageFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 
-public class ResultActivity extends AppCompatActivity {
-    private String distance, date, tripTime, taxiType, calculatedPrice, ocrResult;
+public class ResultActivity extends AppCompatActivity implements OnMapReadyCallback {
+    private static final String TAG = "ytuLog";
+
+    private String distance, date, tripTime, taxiType, calculatedPrice, ocrResult, oLat, oLong, dLat, dLong;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +56,20 @@ public class ResultActivity extends AppCompatActivity {
         taxiType = intent.getStringExtra("taxiType");
         calculatedPrice = intent.getStringExtra("amount");
         ocrResult = intent.getStringExtra("ocr");
+        oLat = intent.getStringExtra("oLat");
+        oLong = intent.getStringExtra("oLong");
+        dLat = intent.getStringExtra("dLat");
+        dLong = intent.getStringExtra("dLong");
+
+        Log.d(TAG, oLat);
+        Log.d(TAG, oLong);
+        Log.d(TAG, dLat);
+        Log.d(TAG, dLong);
+
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.reportMap);
+        if (mapFragment != null) {
+            mapFragment.getMapAsync(this);
+        }
 
         TextView amountField = findViewById(R.id.amount);
         TextView distanceField = findViewById(R.id.distance);
@@ -58,14 +88,14 @@ public class ResultActivity extends AppCompatActivity {
         String status = "no";
 
         if (Float.parseFloat(amount) < Float.parseFloat(amount)) {
-            Log.d("test1", "fatura küçüktür hesaplanan");
+            Log.d(TAG, "fatura küçüktür hesaplanan");
             status = "yes";
         } else if (Float.parseFloat(amount) < (Float.parseFloat(amount) * 1.2)) {
-            Log.d("test1", "fatura küçüktür 1.2 hesaplanan");
+            Log.d(TAG, "fatura küçüktür 1.2 hesaplanan");
             status = "yes";
         }
-        Log.d("test1", "" + Float.parseFloat(amount));
-        Log.d("test1", "" + Float.parseFloat(calculatedPrice) * 1.2);
+        Log.d(TAG, "" + Float.parseFloat(amount));
+        Log.d(TAG, "" + Float.parseFloat(calculatedPrice) * 1.2);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance(firebaseURL);
         DatabaseReference tripRef = database.getReference("trips");
@@ -76,6 +106,10 @@ public class ResultActivity extends AppCompatActivity {
         hashMap.put("taxiType", taxiType);
         hashMap.put("distance", distance);
         hashMap.put("amount", calculatedPrice);
+//        hashMap.put("oLat", oLat);
+//        hashMap.put("oLong", oLong);
+//        hashMap.put("dLat", dLat);
+//        hashMap.put("dLong", dLong);
 
         FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
         String[] uName;
@@ -99,5 +133,82 @@ public class ResultActivity extends AppCompatActivity {
         Intent intent = new Intent(ResultActivity.this, TripsActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        LatLng origin = new LatLng(Double.parseDouble(oLat), Double.parseDouble(oLong));
+        LatLng destination = new LatLng(Double.parseDouble(dLat), Double.parseDouble(dLong));
+
+        googleMap.addMarker(new MarkerOptions().position(origin).title("Başlangıç"));
+        googleMap.addMarker(new MarkerOptions().position(destination).title("Bitiş"));
+        ArrayList<LatLng> path = getDirections(origin, destination);
+
+        if (path.size() > 0) {
+            PolylineOptions opts = new PolylineOptions().addAll(path).color(Color.BLUE).width(5);
+            googleMap.addPolyline(opts);
+        }
+
+        googleMap.getUiSettings().setZoomControlsEnabled(true);
+
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(destination, 15));
+    }
+
+    private ArrayList<LatLng> getDirections(LatLng origin, LatLng destination) {
+        //Define list to get all latlng for the route
+        ArrayList<LatLng> path = new ArrayList<>();
+        Log.d("test", origin.latitude + "," + origin.longitude + "\n" + destination.latitude + "," + destination.longitude);
+
+        //Execute Directions API request
+        GeoApiContext context = new GeoApiContext.Builder()
+                .apiKey("AIzaSyAaflO4djVC3VTRXf9SpyXF16U1i0LDzK4")
+                .build();
+        DirectionsApiRequest req =
+                DirectionsApi.getDirections(context, origin.latitude + "," + origin.longitude,
+                        destination.latitude + "," + destination.longitude);
+        try {
+            DirectionsResult res = req.await();
+
+            //Loop through legs and steps to get encoded polylines of each step
+            if (res.routes != null && res.routes.length > 0) {
+                DirectionsRoute route = res.routes[0];
+
+                if (route.legs != null) {
+                    for (int i = 0; i < route.legs.length; i++) {
+                        DirectionsLeg leg = route.legs[i];
+                        if (leg.steps != null) {
+                            for (int j = 0; j < leg.steps.length; j++) {
+                                DirectionsStep step = leg.steps[j];
+                                if (step.steps != null && step.steps.length > 0) {
+                                    for (int k = 0; k < step.steps.length; k++) {
+                                        DirectionsStep step1 = step.steps[k];
+                                        EncodedPolyline points1 = step1.polyline;
+                                        if (points1 != null) {
+                                            //Decode polyline and add points to list of route coordinates
+                                            List<com.google.maps.model.LatLng> coords1 = points1.decodePath();
+                                            for (com.google.maps.model.LatLng coord1 : coords1) {
+                                                path.add(new LatLng(coord1.lat, coord1.lng));
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    EncodedPolyline points = step.polyline;
+                                    if (points != null) {
+                                        //Decode polyline and add points to list of route coordinates
+                                        List<com.google.maps.model.LatLng> coords = points.decodePath();
+                                        for (com.google.maps.model.LatLng coord : coords) {
+                                            path.add(new LatLng(coord.lat, coord.lng));
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } catch (Exception ex) {
+            Log.e("test1", ex.getLocalizedMessage());
+        }
+        return path;
     }
 }

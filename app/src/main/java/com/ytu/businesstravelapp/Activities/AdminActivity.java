@@ -29,6 +29,8 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class AdminActivity extends AppCompatActivity {
+    private static final String TAG = "ytu";
+
     private RecyclerView rvTrips;
     private AdminTripsAdapter tripsAdapter;
     private ArrayList<Trip> trips;
@@ -68,7 +70,6 @@ public class AdminActivity extends AppCompatActivity {
         FirebaseDatabase database = FirebaseDatabase.getInstance(firebaseURL);
         DatabaseReference tripRef = database.getReference("trips");
 
-        Log.d("test1",tripRef.toString());
         tripRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -77,15 +78,9 @@ public class AdminActivity extends AppCompatActivity {
                     Trip trip = dataSnapshot.getValue(Trip.class);
                     if (trip != null) {
                         trip.setId(dataSnapshot.getKey());
-                        Log.d("test1",dataSnapshot.getKey());
                         trips.add(trip);
-                        Log.d("test1","trip null değil");
-                    }
-                    else {
-                        Log.d("test1","trip null");
                     }
                 }
-                Log.d("test1",trips.size() + "");
 
                 tripsAdapter = new AdminTripsAdapter(AdminActivity.this, trips);
                 rvTrips.setAdapter(tripsAdapter);
@@ -93,7 +88,7 @@ public class AdminActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Log.d("test1",error.toString());
+                Log.d(TAG,error.toString());
             }
         });
     }

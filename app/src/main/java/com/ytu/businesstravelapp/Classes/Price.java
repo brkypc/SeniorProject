@@ -6,9 +6,7 @@ public class Price {
     public Price() {
     }
 
-    public String getKm() {
-        return km;
-    }
+    public String getKm() { return km; }
 
     public String getOpening() {
         return opening;

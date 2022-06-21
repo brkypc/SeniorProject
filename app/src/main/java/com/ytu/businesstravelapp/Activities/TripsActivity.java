@@ -25,6 +25,8 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class TripsActivity extends AppCompatActivity {
+    private static final String TAG = "ytu";
+
     private RecyclerView rvTrips;
     private TripsAdapter tripsAdapter;
     private ArrayList<Trip> trips;
@@ -46,7 +48,6 @@ public class TripsActivity extends AppCompatActivity {
         FirebaseDatabase database = FirebaseDatabase.getInstance(firebaseURL);
         DatabaseReference tripRef = database.getReference("trips");
 
-        Log.d("test1",tripRef.toString());
         tripRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -54,15 +55,8 @@ public class TripsActivity extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Trip trip = dataSnapshot.getValue(Trip.class);
 
-                    if (trip != null) {
-                        trips.add(trip);
-                        Log.d("test1","trip null değil");
-                    }
-                    else {
-                        Log.d("test1","trip null");
-                    }
+                    if (trip != null) { trips.add(trip); }
                 }
-                Log.d("test1",trips.size() + "");
 
                 tripsAdapter = new TripsAdapter(TripsActivity.this, trips);
                 rvTrips.setAdapter(tripsAdapter);
@@ -70,7 +64,7 @@ public class TripsActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Log.d("test1",error.toString());
+                Log.d(TAG,error.toString());
             }
         });
 

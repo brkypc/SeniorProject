@@ -14,7 +14,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="30dp"
         android:fontFamily="@font/baloo"
-        android:text="Ahmet YAMAN"
+        android:text="@string/ahmet_yaman"
         android:textColor="#43a047"
         android:textSize="12pt"
         android:textStyle="italic"
@@ -28,7 +28,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/baloo"
-        android:text="ymna32@gmail.com"
+        android:text="@string/ymna32_gmail_com"
         android:textColor="#43a047"
         android:textSize="12pt"
         android:textStyle="italic"
@@ -44,7 +44,7 @@
         android:layout_marginEnd="20dp"
         android:background="@drawable/profile_btn"
         android:fontFamily="@font/muli_black"
-        android:text="Seyahatler"
+        android:text="@string/seyahatler"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email" />
 
@@ -57,7 +57,7 @@
         android:layout_marginEnd="20dp"
         android:background="@drawable/profile_btn"
         android:fontFamily="@font/muli_black"
-        android:text="Ücretler"
+        android:text="@string/ucretler"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/prevTrips" />
 
@@ -70,7 +70,7 @@
         android:layout_marginEnd="20dp"
         android:background="@drawable/profile_btn"
         android:fontFamily="@font/muli_black"
-        android:text="Hakkında"
+        android:text="@string/hakkinda"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/prices" />
 
@@ -83,7 +83,7 @@
         android:layout_marginEnd="20dp"
         android:background="@drawable/profile_btn"
         android:fontFamily="@font/muli_black"
-        android:text="SSS"
+        android:text="@string/sss"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/about" />
 
@@ -96,9 +96,8 @@
         android:layout_marginEnd="20dp"
         android:background="@drawable/profile_btn"
         android:fontFamily="@font/muli_black"
-        android:text="Çıkış"
+        android:text="@string/cikis"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/faq" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

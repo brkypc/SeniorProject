@@ -121,34 +121,28 @@ public class AdminTripsAdapter extends RecyclerView.Adapter<AdminTripsAdapter.Vi
             taxiPhoto.setImageResource(R.drawable.black_taxi);
         }
 
-        approve.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (trip.getStatus().equals("no")) {
-                    DatabaseReference myRef = database.getReference("trips/" + trip.getId());
-                    myRef.child("status").setValue("yes");
-                    Toast.makeText(context, "Fatura onaylandı", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(context, "Fatura önceden onaylandı", Toast.LENGTH_SHORT).show();
+        approve.setOnClickListener(v -> {
+            if (trip.getStatus().equals("no")) {
+                DatabaseReference myRef = database.getReference("trips/" + trip.getId());
+                myRef.child("status").setValue("yes");
+                Toast.makeText(context, "Fatura onaylandı", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(context, "Fatura önceden onaylandı", Toast.LENGTH_SHORT).show();
 
-                }
-                dialog.dismiss();
             }
+            dialog.dismiss();
         });
 
-        refuse.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (trip.getStatus().equals("yes")) {
-                    DatabaseReference myRef = database.getReference("trips/" + trip.getId());
-                    myRef.child("status").setValue("no");
-                    Toast.makeText(context, "Fatura reddedildi", Toast.LENGTH_SHORT).show();
+        refuse.setOnClickListener(v -> {
+            if (trip.getStatus().equals("yes")) {
+                DatabaseReference myRef = database.getReference("trips/" + trip.getId());
+                myRef.child("status").setValue("no");
+                Toast.makeText(context, "Fatura reddedildi", Toast.LENGTH_SHORT).show();
 
-                } else {
-                    Toast.makeText(context, "Fatura önceden reddedildi", Toast.LENGTH_SHORT).show();
-                }
-                dialog.dismiss();
+            } else {
+                Toast.makeText(context, "Fatura önceden reddedildi", Toast.LENGTH_SHORT).show();
             }
+            dialog.dismiss();
         });
 
         dialog.show();

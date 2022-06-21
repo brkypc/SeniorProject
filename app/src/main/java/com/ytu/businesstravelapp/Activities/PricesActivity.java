@@ -26,9 +26,11 @@ import com.ytu.businesstravelapp.R;
 import java.util.ArrayList;
 
 public class PricesActivity extends AppCompatActivity {
-    private ArrayList<Price> prices;
+    private static final String TAG = "ytu";
+
     private TextView textView, textView2, textView4, textView5, textView6, textView8, textView9, textView10, textView12;
     private Price blackPrice, bluePrice, yellowPrice;
+    private ArrayList<Price> prices;
     private FirebaseDatabase database;
 
     @Override
@@ -37,10 +39,9 @@ public class PricesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_prices);
 
         defineFields();
+
         Intent intent = getIntent();
-        if(intent.hasExtra("user")) {
-            defineSettings();
-        }
+        if(intent.hasExtra("user")) { defineSettings(); }
     }
 
     private void defineSettings() {
@@ -59,6 +60,7 @@ public class PricesActivity extends AppCompatActivity {
         edittext.setText(amount);
         edittext.setGravity(Gravity.CENTER);
         edittext.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
+
         AlertDialog.Builder alert = new AlertDialog.Builder(PricesActivity.this);
         alert.setMessage("Yeni tutarı giriniz");
         alert.setView(edittext);
@@ -98,7 +100,6 @@ public class PricesActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance(firebaseURL);
         DatabaseReference priceRef = database.getReference("prices");
 
-        Log.d("test1", priceRef.toString());
         priceRef.addValueEventListener(new ValueEventListener() {
             @SuppressLint("SetTextI18n")
             @Override
@@ -107,15 +108,8 @@ public class PricesActivity extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Price price= dataSnapshot.getValue(Price.class);
 
-                    if (price != null) {
-                        prices.add(price);
-                        Log.d("test1","price null değil");
-                    }
-                    else {
-                        Log.d("test1","price null");
-                    }
+                    if (price != null) { prices.add(price); }
                 }
-                Log.d("test1",prices.size() + "");
 
                 blackPrice = prices.get(0);
                 bluePrice = prices.get(1);
@@ -134,7 +128,7 @@ public class PricesActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Log.d("test1",error.toString());
+                Log.d(TAG,error.toString());
             }
         });
     }

@@ -69,8 +69,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/password"
         android:layout_alignParentRight="true"
-        android:text="@string/sifremi_unuttum"
         android:fontFamily="@font/muli_extralight"
+        android:text="@string/sifremi_unuttum"
         android:textSize="14sp" />
 
     <androidx.appcompat.widget.AppCompatButton

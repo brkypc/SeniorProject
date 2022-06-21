@@ -1,10 +1,5 @@
 package com.ytu.businesstravelapp.Activities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
-
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -14,8 +9,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
+
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.ytu.businesstravelapp.R;
@@ -23,15 +19,13 @@ import com.ytu.businesstravelapp.R;
 import java.util.Objects;
 
 public class LoginActivity extends AppCompatActivity {
+    private TextInputLayout email, password;
+    private AppCompatButton loginButton;
+    private ProgressBar progressBar;
+    private TextView resetPassword;
 
-    TextInputLayout email, password;
-    AppCompatButton loginButton;
-    ProgressBar progressBar;
-    TextView resetPassword;
-
-    String userEnteredEmail, userEnteredPassword;
-
-    FirebaseAuth auth;
+    private String userEnteredEmail, userEnteredPassword;
+    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,12 +41,12 @@ public class LoginActivity extends AppCompatActivity {
                 .addOnCompleteListener(task -> {
                     if(task.isSuccessful()) {
                         progressBar.setVisibility(View.VISIBLE);
-                        Toast.makeText(LoginActivity.this, "Giriş Yaptınız", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "Giriş Başarılı", Toast.LENGTH_SHORT).show();
 
                         SharedPreferences sharedPreferences = getSharedPreferences("mySharedPref", MODE_PRIVATE);
-                        @SuppressLint("CommitPrefEdits")
                         SharedPreferences.Editor editor = sharedPreferences.edit();
-                        if(Objects.requireNonNull(userEnteredEmail).equalsIgnoreCase("admin@ytu.com")) {
+
+                        if(userEnteredEmail.equalsIgnoreCase("admin@ytu.com")) {
                             editor.putString("userType","admin");
                             editor.apply();
                             new Handler().postDelayed(() -> {
@@ -70,7 +64,6 @@ public class LoginActivity extends AppCompatActivity {
                                 finish();
                             },1000);
                         }
-
                     }
                     else {
                         loginButton.setClickable(true);
@@ -112,28 +105,22 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        resetPassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                userEnteredEmail = Objects.requireNonNull(email.getEditText()).getText().toString().trim();
-                if(userEnteredEmail.isEmpty()) {
-                    email.setError("E-postayı giriniz");
-                }
-                else {
-                    FirebaseAuth.getInstance().sendPasswordResetEmail(userEnteredEmail).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if(task.isSuccessful()) {
-                                email.getEditText().setText("");
-                                Objects.requireNonNull(password.getEditText()).setText("");
-                                Toast.makeText(LoginActivity.this, "Sıfırlama maili gönderildi", Toast.LENGTH_SHORT).show();
-                            }
-                            else {
-                                Toast.makeText(LoginActivity.this, "Bir hata oluştu", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
-                }
+        resetPassword.setOnClickListener(view -> {
+            userEnteredEmail = Objects.requireNonNull(email.getEditText()).getText().toString().trim();
+            if(userEnteredEmail.isEmpty()) {
+                email.setError("E-postayı giriniz");
+            }
+            else {
+                FirebaseAuth.getInstance().sendPasswordResetEmail(userEnteredEmail).addOnCompleteListener(task -> {
+                    if(task.isSuccessful()) {
+                        email.getEditText().setText("");
+                        Objects.requireNonNull(password.getEditText()).setText("");
+                        Toast.makeText(LoginActivity.this, "Sıfırlama maili gönderildi", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        Toast.makeText(LoginActivity.this, "Bir hata oluştu", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
     }

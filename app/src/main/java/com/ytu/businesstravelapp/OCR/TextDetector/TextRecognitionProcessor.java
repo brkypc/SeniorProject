@@ -1,27 +1,9 @@
-/*
- * Copyright 2020 Google LLC. All rights reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.ytu.businesstravelapp.OCR.TextDetector;
 
-import android.content.BroadcastReceiver;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Point;
-import android.os.Messenger;
-import android.os.Parcelable;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -34,17 +16,15 @@ import com.google.mlkit.vision.text.Text.Line;
 import com.google.mlkit.vision.text.TextRecognition;
 import com.google.mlkit.vision.text.TextRecognizer;
 import com.google.mlkit.vision.text.TextRecognizerOptionsInterface;
-import com.ytu.businesstravelapp.Activities.OCRActivity;
 import com.ytu.businesstravelapp.OCR.CameraSettings.GraphicOverlay;
 import com.ytu.businesstravelapp.OCR.CameraSettings.VisionProcessorBase;
 import com.ytu.businesstravelapp.OCR.Preference.PreferenceUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-/**
- * Processor for the text detector demo.
- */
+
 public class TextRecognitionProcessor extends VisionProcessorBase<Text> {
     public static final String BROADCAST_FILTER = "ManageConection_broadcast_receiver_intent_filter";
     private static final String TAG = "TextRecProcessor";
@@ -52,9 +32,10 @@ public class TextRecognitionProcessor extends VisionProcessorBase<Text> {
     private final TextRecognizer textRecognizer;
     private final Boolean shouldGroupRecognizedTextInBlocks;
     private final Boolean showLanguageTag;
+    @SuppressLint("StaticFieldLeak")
     private static Context mContext;
 
-    public TextRecognitionProcessor (
+    public TextRecognitionProcessor(
             Context context, TextRecognizerOptionsInterface textRecognizerOptions) {
         super(context);
         mContext = context;
@@ -84,10 +65,10 @@ public class TextRecognitionProcessor extends VisionProcessorBase<Text> {
     }
 
     private static void logExtrasForTesting(Text text) {
-        Intent intent= new Intent(BROADCAST_FILTER);
+        Intent intent = new Intent(BROADCAST_FILTER);
         ArrayList<String> textBlocks = new ArrayList<>();
         if (text != null) {
-            for (Text.TextBlock textBlock:text.getTextBlocks()) {
+            for (Text.TextBlock textBlock : text.getTextBlocks()) {
                 textBlocks.add(textBlock.getText());
             }
 
@@ -114,11 +95,11 @@ public class TextRecognitionProcessor extends VisionProcessorBase<Text> {
                                 MANUAL_TESTING_LOG,
                                 String.format(
                                         "Detected text element %d has a bounding box: %s",
-                                        k, element.getBoundingBox().flattenToString()));
+                                        k, Objects.requireNonNull(element.getBoundingBox()).flattenToString()));
                         Log.v(
                                 MANUAL_TESTING_LOG,
                                 String.format(
-                                        "Expected corner point size is 4, get %d", element.getCornerPoints().length));
+                                        "Expected corner point size is 4, get %d", Objects.requireNonNull(element.getCornerPoints()).length));
                         for (Point point : element.getCornerPoints()) {
                             Log.v(
                                     MANUAL_TESTING_LOG,

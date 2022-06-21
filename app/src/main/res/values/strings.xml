@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BusinessTravelApp</string>
+    <string name="app_name">Business Travel</string>
     <string name="receipt">receipt</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="noAmountFound">Tutar tespit edilemedi</string>
@@ -161,7 +161,6 @@
     <string name="seyahat_raporunuz">Seyahat Raporunuz</string>
     <string name="gidilen_mesafe">Gidilen Mesafe:</string>
     <string name="_2_km">2 km</string>
-    <string name="hesaplanan_tutar">Hesaplanan Tutar:</string>
     <string name="_45">₺45</string>
     <string name="_6_30_km">6,30 ₺/km</string>
     <string name="a_l_creti_9_80">Açılış Ücreti: 9,80₺</string>
@@ -185,4 +184,31 @@
     <string name="sifremi_unuttum">Şifremi Unuttum</string>
     <string name="giris_yap">Giriş Yap</string>
     <string name="take_again">Yeniden Çek</string>
+    <string name="galeriden_sec">Galeriden Seç</string>
+    <string name="fotograf_cek">Fotoğraf Çek</string>
+    <string name="fisi_okut">Fişi Okut</string>
+    <string name="fisi_onayla">Fişi Onayla</string>
+    <string name="ahmet_yaman">Ahmet YAMAN</string>
+    <string name="ymna32_gmail_com">ymna32@gmail.com</string>
+    <string name="seyahatler">Seyahatler</string>
+    <string name="ucretler">Ücretler</string>
+    <string name="hakkinda">Hakkında</string>
+    <string name="sss">SSS</string>
+    <string name="cikis">Çıkış</string>
+    <string name="seyahat_suresi">Seyahat Süresi</string>
+    <string name="_30_dk">30 dk</string>
+    <string name="fis_tutari">Fiş Tutarı:</string>
+    <string name="_134">134₺</string>
+    <string name="hesaplanan_tutar">Hesaplanan Tutar:</string>
+    <string name="_33_02">33.02₺</string>
+    <string name="onayla">Onayla</string>
+    <string name="reddet">Reddet</string>
+    <string name="basla">Başla</string>
+    <string name="bitir">Bitir</string>
+    <string name="_250">250₺</string>
+    <string name="_244_21">244.21₺</string>
+    <string name="durum">Durum</string>
+    <string name="isim_soyisim">İsim Soyisim</string>
+    <string name="harita">Harita</string>
+    <string name="profil">Profil</string>
 </resources>

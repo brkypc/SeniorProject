@@ -17,10 +17,10 @@
             android:layout_width="180dp"
             android:layout_height="180dp"
             android:layout_marginEnd="-50dp"
+            android:contentDescription="@string/app_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/yellow_taxi"
-            android:contentDescription="@string/app_text" />
+            app:srcCompat="@drawable/yellow_taxi" />
 
         <TextView
             android:id="@+id/textView"
@@ -28,8 +28,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
-            android:text="@string/_6_30_km"
             android:fontFamily="@font/muli"
+            android:text="@string/_6_30_km"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView3" />
@@ -52,11 +52,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
-            android:text="@string/sar_taksi"
-            android:textStyle="bold"
-            android:textSize="9pt"
             android:fontFamily="@font/baloo"
+            android:text="@string/sar_taksi"
             android:textColor="@color/black"
+            android:textSize="9pt"
+            android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/imageView2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -90,11 +90,11 @@
             android:layout_width="180dp"
             android:layout_height="180dp"
             android:layout_marginEnd="-50dp"
+            android:contentDescription="@string/app_text"
             android:scaleY="1.15"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/blue_taxi"
-            android:contentDescription="@string/app_text" />
+            app:srcCompat="@drawable/blue_taxi" />
 
         <TextView
             android:id="@+id/textView5"
@@ -114,8 +114,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
-            android:text="@string/a_l_creti_11_27"
             android:fontFamily="@font/muli"
+            android:text="@string/a_l_creti_11_27"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView5" />
@@ -125,11 +125,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:text="@string/turkuaz_taksi"
-            android:textStyle="bold"
-            android:textSize="9pt"
-            android:textColor="@color/black"
             android:fontFamily="@font/baloo"
+            android:text="@string/turkuaz_taksi"
+            android:textColor="@color/black"
+            android:textSize="9pt"
+            android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/imageView3"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -140,8 +140,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
-            android:text="@string/ndi_bindi_creti_32_20"
             android:fontFamily="@font/muli"
+            android:text="@string/ndi_bindi_creti_32_20"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView6" />
@@ -163,11 +163,11 @@
             android:layout_width="180dp"
             android:layout_height="180dp"
             android:layout_marginEnd="-50dp"
+            android:contentDescription="@string/app_text"
             android:scaleX="1.15"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/black_taxi"
-            android:contentDescription="@string/app_text" />
+            app:srcCompat="@drawable/black_taxi" />
 
         <TextView
             android:id="@+id/textView9"
@@ -175,8 +175,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
-            android:text="@string/_10_71_km"
             android:fontFamily="@font/muli"
+            android:text="@string/_10_71_km"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView11" />
@@ -187,8 +187,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
-            android:text="@string/a_l_creti_16_66"
             android:fontFamily="@font/muli"
+            android:text="@string/a_l_creti_16_66"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView9" />
@@ -198,11 +198,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:text="@string/siyah_taksi"
             android:fontFamily="@font/baloo"
-            android:textStyle="bold"
-            android:textSize="9pt"
+            android:text="@string/siyah_taksi"
             android:textColor="@color/black"
+            android:textSize="9pt"
+            android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/imageView4"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -213,8 +213,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
-            android:text="@string/ndi_bindi_creti_47_60"
             android:fontFamily="@font/muli"
+            android:text="@string/ndi_bindi_creti_47_60"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView10" />
