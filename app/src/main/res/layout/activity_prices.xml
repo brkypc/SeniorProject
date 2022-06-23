@@ -41,7 +41,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/muli"
-            android:text="@string/a_l_creti_9_80"
+            android:text="@string/acilis_ucreti_9_80"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -53,7 +53,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/baloo"
-            android:text="@string/sar_taksi"
+            android:text="@string/sari_taksi"
             android:textColor="@color/black"
             android:textSize="9pt"
             android:textStyle="bold"
@@ -115,7 +115,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/muli"
-            android:text="@string/a_l_creti_11_27"
+            android:text="@string/acilis_ucreti_11_27"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView5" />
@@ -141,7 +141,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/muli"
-            android:text="@string/ndi_bindi_creti_32_20"
+            android:text="@string/indi_bindi_creti_32_20"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView6" />
@@ -188,7 +188,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/muli"
-            android:text="@string/a_l_creti_16_66"
+            android:text="@string/acilis_ucreti_16_66"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView9" />
@@ -214,7 +214,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/muli"
-            android:text="@string/ndi_bindi_creti_47_60"
+            android:text="@string/indi_bindi_ucreti_47_60"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView10" />
