@@ -16,7 +16,6 @@ import java.util.List;
 
 public class GeofenceBroadcastReceiver extends BroadcastReceiver {
 
-
     @RequiresApi(api = Build.VERSION_CODES.S)
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -24,18 +23,19 @@ public class GeofenceBroadcastReceiver extends BroadcastReceiver {
 
         GeofencingEvent geofencingEvent = GeofencingEvent.fromIntent(intent);
 
+        String TAG = "ytuLog";
         if (geofencingEvent.hasError()) {
-            Log.d("test2", "onReceive: Error receiving geofence event...");
+            Log.d(TAG, "onReceive: Error receiving geofence event...");
             return;
         }
 
         List<Geofence> geofenceList = geofencingEvent.getTriggeringGeofences();
         for (Geofence geofence: geofenceList) {
-            Log.d("test2", "onReceive: " + geofence.getRequestId());
+            Log.d(TAG, "onReceive: " + geofence.getRequestId());
         }
 
         int transitionType = geofencingEvent.getGeofenceTransition();
-        Log.d("test2", " type: " + transitionType);
+        Log.d(TAG, " type: " + transitionType);
 
         switch (transitionType) {
             case Geofence.GEOFENCE_TRANSITION_ENTER:

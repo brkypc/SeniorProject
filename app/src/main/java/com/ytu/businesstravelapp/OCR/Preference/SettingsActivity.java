@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.ytu.businesstravelapp.R;
 
 public class SettingsActivity extends AppCompatActivity {
-
     public static final String EXTRA_LAUNCH_SOURCE = "extra_launch_source";
 
     public enum LaunchSource {

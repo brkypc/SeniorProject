@@ -29,7 +29,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class AdminActivity extends AppCompatActivity {
-    private static final String TAG = "ytu";
+    private static final String TAG = "ytuLog";
 
     private RecyclerView rvTrips;
     private AdminTripsAdapter tripsAdapter;

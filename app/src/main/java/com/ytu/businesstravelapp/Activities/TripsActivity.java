@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class TripsActivity extends AppCompatActivity {
-    private static final String TAG = "ytu";
+    private static final String TAG = "ytuLog";
 
     private RecyclerView rvTrips;
     private TripsAdapter tripsAdapter;

@@ -87,15 +87,16 @@ public class ResultActivity extends AppCompatActivity implements OnMapReadyCallb
     private void saveToFirebase(String amount) {
         String status = "no";
 
-        if (Float.parseFloat(amount) < Float.parseFloat(amount)) {
-            Log.d(TAG, "fatura küçüktür hesaplanan");
+        if (Float.parseFloat(amount) < Float.parseFloat(calculatedPrice)) {
+            Log.d(TAG, "bill price equals calculated price ");
             status = "yes";
-        } else if (Float.parseFloat(amount) < (Float.parseFloat(amount) * 1.2)) {
-            Log.d(TAG, "fatura küçüktür 1.2 hesaplanan");
+        } else if (Float.parseFloat(amount) < (Float.parseFloat(calculatedPrice) * 1.1)) { //%10 error rate
+            Log.d(TAG, "bill price lesser then 1.1*calculated price");
             status = "yes";
         }
-        Log.d(TAG, "" + Float.parseFloat(amount));
-        Log.d(TAG, "" + Float.parseFloat(calculatedPrice) * 1.2);
+        Log.d(TAG, "Bill Price: " + Float.parseFloat(amount));
+        Log.d(TAG, "Calculated Price: " + Float.parseFloat(calculatedPrice));
+        Log.d(TAG, "1.1*Calculated Price: " + Float.parseFloat(calculatedPrice) * 1.1);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance(firebaseURL);
         DatabaseReference tripRef = database.getReference("trips");
@@ -106,10 +107,6 @@ public class ResultActivity extends AppCompatActivity implements OnMapReadyCallb
         hashMap.put("taxiType", taxiType);
         hashMap.put("distance", distance);
         hashMap.put("amount", calculatedPrice);
-//        hashMap.put("oLat", oLat);
-//        hashMap.put("oLong", oLong);
-//        hashMap.put("dLat", dLat);
-//        hashMap.put("dLong", dLong);
 
         FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
         String[] uName;
@@ -128,7 +125,7 @@ public class ResultActivity extends AppCompatActivity implements OnMapReadyCallb
         hashMap.put("billPrice", amount);
         hashMap.put("status", status);
 
-        //tripRef.push().setValue(hashMap);
+        tripRef.push().setValue(hashMap);
         Toast.makeText(ResultActivity.this, "Seyahatiniz kaydedildi", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(ResultActivity.this, TripsActivity.class);
         startActivity(intent);
@@ -155,11 +152,9 @@ public class ResultActivity extends AppCompatActivity implements OnMapReadyCallb
     }
 
     private ArrayList<LatLng> getDirections(LatLng origin, LatLng destination) {
-        //Define list to get all latlng for the route
         ArrayList<LatLng> path = new ArrayList<>();
-        Log.d("test", origin.latitude + "," + origin.longitude + "\n" + destination.latitude + "," + destination.longitude);
+        Log.d(TAG, origin.latitude + "," + origin.longitude + "\n" + destination.latitude + "," + destination.longitude);
 
-        //Execute Directions API request
         GeoApiContext context = new GeoApiContext.Builder()
                 .apiKey("AIzaSyAaflO4djVC3VTRXf9SpyXF16U1i0LDzK4")
                 .build();
@@ -169,7 +164,6 @@ public class ResultActivity extends AppCompatActivity implements OnMapReadyCallb
         try {
             DirectionsResult res = req.await();
 
-            //Loop through legs and steps to get encoded polylines of each step
             if (res.routes != null && res.routes.length > 0) {
                 DirectionsRoute route = res.routes[0];
 
@@ -184,7 +178,6 @@ public class ResultActivity extends AppCompatActivity implements OnMapReadyCallb
                                         DirectionsStep step1 = step.steps[k];
                                         EncodedPolyline points1 = step1.polyline;
                                         if (points1 != null) {
-                                            //Decode polyline and add points to list of route coordinates
                                             List<com.google.maps.model.LatLng> coords1 = points1.decodePath();
                                             for (com.google.maps.model.LatLng coord1 : coords1) {
                                                 path.add(new LatLng(coord1.lat, coord1.lng));
@@ -194,7 +187,6 @@ public class ResultActivity extends AppCompatActivity implements OnMapReadyCallb
                                 } else {
                                     EncodedPolyline points = step.polyline;
                                     if (points != null) {
-                                        //Decode polyline and add points to list of route coordinates
                                         List<com.google.maps.model.LatLng> coords = points.decodePath();
                                         for (com.google.maps.model.LatLng coord : coords) {
                                             path.add(new LatLng(coord.lat, coord.lng));
@@ -207,7 +199,7 @@ public class ResultActivity extends AppCompatActivity implements OnMapReadyCallb
                 }
             }
         } catch (Exception ex) {
-            Log.e("test1", ex.getLocalizedMessage());
+            Log.e(TAG, ex.getLocalizedMessage());
         }
         return path;
     }

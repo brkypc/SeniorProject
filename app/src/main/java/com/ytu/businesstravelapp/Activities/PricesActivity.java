@@ -26,7 +26,7 @@ import com.ytu.businesstravelapp.R;
 import java.util.ArrayList;
 
 public class PricesActivity extends AppCompatActivity {
-    private static final String TAG = "ytu";
+    private static final String TAG = "ytuLog";
 
     private TextView textView, textView2, textView4, textView5, textView6, textView8, textView9, textView10, textView12;
     private Price blackPrice, bluePrice, yellowPrice;

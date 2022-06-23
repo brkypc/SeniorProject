@@ -67,7 +67,6 @@ public class AdminTripsAdapter extends RecyclerView.Adapter<AdminTripsAdapter.Vi
         }
 
         holder.itemView.setOnClickListener(view -> showMyDialog(trip));
-
     }
 
     @Override

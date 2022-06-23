@@ -24,7 +24,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-
 public class TextRecognitionProcessor extends VisionProcessorBase<Text> {
     public static final String BROADCAST_FILTER = "ManageConection_broadcast_receiver_intent_filter";
     private static final String TAG = "TextRecProcessor";

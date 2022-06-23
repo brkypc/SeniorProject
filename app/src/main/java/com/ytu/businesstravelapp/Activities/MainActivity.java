@@ -1,7 +1,6 @@
 package com.ytu.businesstravelapp.Activities;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.WindowManager;
@@ -12,6 +11,8 @@ import androidx.appcompat.app.AppCompatDelegate;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.ytu.businesstravelapp.R;
+
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
     public static final String firebaseURL = "https://businesstravel-352310-default-rtdb.europe-west1.firebasedatabase.app/";
@@ -24,21 +25,21 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
+
         if(fUser != null) {
-            SharedPreferences sharedPreferences = getSharedPreferences("mySharedPref", MODE_PRIVATE);
-            if(sharedPreferences.getString("userType", "").equalsIgnoreCase("admin")) {
+            if (Objects.requireNonNull(fUser.getEmail()).equalsIgnoreCase("admin@ytu.com")) {
                 new Handler().postDelayed(() -> {
                     Intent intent = new Intent(MainActivity.this, AdminActivity.class);
                     startActivity(intent);
                     finish();
-                }, 500);
+                }, 3750);
             }
             else {
                 new Handler().postDelayed(() -> {
                     Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                     startActivity(intent);
                     finish();
-                }, 500);
+                }, 3750);
             }
         }
         else {
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
-            }, 500); // real 3750
+            }, 3750);
         }
 
     }

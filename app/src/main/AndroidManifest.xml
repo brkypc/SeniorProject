@@ -27,9 +27,6 @@
         <receiver android:name=".Geofence.GeofenceBroadcastReceiver"/>
 
         <activity
-            android:name=".Activities.GeofenceActivity"
-            android:exported="false" />
-        <activity
             android:name=".Activities.FAQActivity"
             android:exported="false" />
         <activity

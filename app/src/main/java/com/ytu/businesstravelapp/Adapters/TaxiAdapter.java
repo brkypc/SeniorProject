@@ -88,18 +88,18 @@ public class TaxiAdapter extends RecyclerView.Adapter<TaxiAdapter.ViewHolder> {
         holder.startBtn.setOnClickListener(view -> {
             if (!holder.startBtn.isChecked()) {
                 context.stopService(new Intent(context, MyIntentService.class));
-                Log.d("test", "stopped service");
+                Log.d("ytuLog", "stopped service");
 
                 for (Location l : locations) {
-                    Log.d("test", l.getLatitude() + " long:" + l.getLongitude());
+                    Log.d("ytuLog", l.getLatitude() + " long:" + l.getLongitude());
                 }
 
                 float calculatedReceipt;
                 String distance = "0.0";
                 if (locations.size() > 1) {
                     float result = locations.get(0).distanceTo(locations.get(locations.size() - 1));
-                    Log.d("test", String.valueOf(result / 1000));
-                    Log.d("test", String.valueOf(result));
+                    Log.d("ytuLog", String.valueOf(result / 1000));
+                    Log.d("ytuLog", String.valueOf(result));
 
 
                     distance = String.format("%.1f", result / 1000);
@@ -107,13 +107,13 @@ public class TaxiAdapter extends RecyclerView.Adapter<TaxiAdapter.ViewHolder> {
                     calculatedReceipt = (Float.parseFloat(distance) * (Float.parseFloat(taxi.getKmPrice())) + Float.parseFloat(taxi.getStartPrice()));
                     if (calculatedReceipt < Float.parseFloat(taxi.getMinPrice()))
                         calculatedReceipt = Float.parseFloat(taxi.getMinPrice());
-                    Log.d("test", calculatedReceipt + "");
+                    Log.d("ytuLog", calculatedReceipt + "");
                 }
                 else {
                     calculatedReceipt = Float.parseFloat(taxi.getMinPrice());
                 }
                 endTime = Calendar.getInstance().getTime();
-                Log.d("test1", endTime.toString());
+                Log.d("ytuLog", endTime.toString());
 
 
                 // Calculating the difference in milliseconds
@@ -133,9 +133,9 @@ public class TaxiAdapter extends RecyclerView.Adapter<TaxiAdapter.ViewHolder> {
                 long differenceInSeconds
                         = (differenceInMilliSeconds / 1000) % 60;
 
-                Log.d("test1", String.valueOf(differenceInSeconds));
-                Log.d("test1", String.valueOf(differenceInHours));
-                Log.d("test1", String.valueOf(differenceInMinutes));
+                Log.d("ytuLog", String.valueOf(differenceInSeconds));
+                Log.d("ytuLog", String.valueOf(differenceInHours));
+                Log.d("ytuLog", String.valueOf(differenceInMinutes));
 
                 String tripTime = "";
                 if (differenceInHours > 0) {
@@ -146,8 +146,8 @@ public class TaxiAdapter extends RecyclerView.Adapter<TaxiAdapter.ViewHolder> {
 
                 SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyyy HH:mm", new Locale("tr"));
                 String sDate = sdf.format(startTime);
-                Log.d("test1", "date: " + startTime);
-                Log.d("test1", "sdate: " + sDate);
+                Log.d("ytuLog", "date: " + startTime);
+                Log.d("ytuLog", "sdate: " + sDate);
 
                 Intent intent = new Intent(context, OCRActivity.class);
 
@@ -169,14 +169,14 @@ public class TaxiAdapter extends RecyclerView.Adapter<TaxiAdapter.ViewHolder> {
 
             } else {
                 startTime = Calendar.getInstance().getTime();
-                Log.d("test1", startTime.toString());
+                Log.d("ytuLog", startTime.toString());
                 Intent startServiceIntent = new Intent(context, MyIntentService.class);
                 Messenger messengerIncoming = new Messenger(mHandler);
                 Messenger messengerIncoming2 = new Messenger(mHandler2);
                 startServiceIntent.putExtra(MESSENGER_INTENT_KEY, messengerIncoming);
                 startServiceIntent.putExtra(MESSENGER_INTENT_KEY2, messengerIncoming2);
                 context.startService(startServiceIntent);
-                Log.d("test", "started service");
+                Log.d("ytuLog", "started service");
             }
         });
 
@@ -207,12 +207,12 @@ public class TaxiAdapter extends RecyclerView.Adapter<TaxiAdapter.ViewHolder> {
     public static class IncomingMessageHandler extends Handler {
         @Override
         public void handleMessage(Message msg) {
-            Log.d("test1", "handleMessage..." + msg.toString());
+            Log.d("ytuLog", "handleMessage..." + msg.toString());
 
             super.handleMessage(msg);
 
             if (msg.what == MyIntentService.LOCATION_MESSAGE2) {
-                Log.d("test", "adapter message received");
+                Log.d("ytuLog", "adapter message received");
                 if(!msg.obj.equals("finished")) {
                     Location obj = (Location) msg.obj;
                     locations.add(obj);

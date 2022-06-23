@@ -53,7 +53,7 @@ public class TextGraphic extends GraphicOverlay.Graphic {
         labelPaint = new Paint();
         labelPaint.setColor(MARKER_COLOR);
         labelPaint.setStyle(Paint.Style.FILL);
-        // Redraw the overlay, as this graphic has been added.
+
         postInvalidate();
     }
 
@@ -61,7 +61,7 @@ public class TextGraphic extends GraphicOverlay.Graphic {
     public void draw(Canvas canvas) {
         Log.d(TAG, "Text is: " + text.getText());
         for (TextBlock textBlock : text.getTextBlocks()) {
-            // Renders the text at the bottom of the box.
+
             Log.d(TAG, "TextBlock text is: " + textBlock.getText());
             Log.d(TAG, "TextBlock boundingbox is: " + textBlock.getBoundingBox());
             Log.d(TAG, "TextBlock cornerpoint is: " + Arrays.toString(textBlock.getCornerPoints()));
@@ -102,7 +102,6 @@ public class TextGraphic extends GraphicOverlay.Graphic {
     }
 
     private void drawText(String text, RectF rect, float textHeight, Canvas canvas) {
-        // If the image is flipped, the left will be translated to right, and the right to left.
         float x0 = translateX(rect.left);
         float x1 = translateX(rect.right);
         rect.left = min(x0, x1);
@@ -117,7 +116,6 @@ public class TextGraphic extends GraphicOverlay.Graphic {
                 rect.left + textWidth + 2 * STROKE_WIDTH,
                 rect.top,
                 labelPaint);
-        // Renders the text at the bottom of the box.
         canvas.drawText(text, rect.left, rect.top - STROKE_WIDTH, textPaint);
     }
 }

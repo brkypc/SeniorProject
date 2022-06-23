@@ -183,7 +183,7 @@ public final class OCRActivity extends AppCompatActivity {
             intent.putExtra("oLong", oLong);
             intent.putExtra("dLat", dLat);
             intent.putExtra("dLong", dLong);
-            Log.e("ytuLog","hata");
+            Log.e("ytuLog", "hata");
             startActivity(intent);
             finish();
         });
@@ -304,7 +304,7 @@ public final class OCRActivity extends AppCompatActivity {
 
             if (imageProcessor != null) {
                 graphicOverlay.setImageSourceInfo(
-                        resizedBitmap.getWidth(), resizedBitmap.getHeight(), /* isFlipped= */ false);
+                        resizedBitmap.getWidth(), resizedBitmap.getHeight(), false);
                 imageProcessor.processBitmap(resizedBitmap, graphicOverlay);
             } else {
                 Log.e(TAG, "Null imageProcessor, please check adb logs for imageProcessor creation error");

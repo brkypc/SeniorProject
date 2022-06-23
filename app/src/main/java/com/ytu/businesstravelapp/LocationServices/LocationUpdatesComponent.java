@@ -39,14 +39,14 @@ public class LocationUpdatesComponent {
 
     @RequiresApi(api = Build.VERSION_CODES.S)
     public void onCreate(Context context) {
-        Log.i(TAG, "created...............");
+        Log.i(TAG, "created");
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(context);
 
         mLocationCallback = new LocationCallback() {
             @Override
             public void onLocationResult(LocationResult locationResult) {
                 super.onLocationResult(locationResult);
-                Log.i(TAG, "onCreate...onLocationResult...............loc " + locationResult.getLastLocation());
+                Log.i(TAG, "onCreate onLocationResult loc: " + locationResult.getLastLocation());
 
                 onNewLocation(locationResult.getLastLocation());
             }
@@ -57,12 +57,12 @@ public class LocationUpdatesComponent {
     }
 
     public void onStart() {
-        Log.i(TAG, "onStart ");
+        Log.i(TAG, "onStart");
         requestLocationUpdates();
     }
 
     public void onStop() {
-        Log.i(TAG, "onStop....");
+        Log.i(TAG, "onStop");
         removeLocationUpdates();
     }
 
@@ -71,7 +71,7 @@ public class LocationUpdatesComponent {
         try {
             mFusedLocationClient.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.getMainLooper());
         } catch (SecurityException unlikely) {
-            Log.e(TAG, "Lost location permission. Could not request updates. " + unlikely);
+            Log.e(TAG, "Could not request updates: " + unlikely);
         }
     }
 
@@ -81,7 +81,7 @@ public class LocationUpdatesComponent {
             mFusedLocationClient.removeLocationUpdates(mLocationCallback);
 
         } catch (SecurityException unlikely) {
-            Log.e(TAG, "Lost location permission. Could not remove updates. " + unlikely);
+            Log.e(TAG, "Could not remove updates:" + unlikely);
         }
     }
     @SuppressLint("MissingPermission")

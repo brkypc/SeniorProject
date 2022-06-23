@@ -161,14 +161,12 @@ public class MapFragment extends Fragment implements GoogleMap.OnMyLocationButto
     @Override
     public void onResume() {
         super.onResume();
-//        if (mMap != null)
-//            //mMap.clear();
     }
 
     public static class IncomingMessageHandler extends Handler {
         @Override
         public void handleMessage(Message msg) {
-            Log.d("test", "handleMessage..." + msg.toString());
+            Log.d(TAG, "handleMessage..." + msg.toString());
 
             super.handleMessage(msg);
 
@@ -181,6 +179,7 @@ public class MapFragment extends Fragment implements GoogleMap.OnMyLocationButto
                     points.add(lastKnownLatLng);
                     //gpsTrack.setPoints(points);
                     if(locations.size()>1) {
+                        mMap.clear();
                         LatLng origin = new LatLng(locations.get(0).getLatitude(), locations.get(0).getLongitude());
                         LatLng destination = new LatLng(locations.get(locations.size() - 1).getLatitude(), locations.get(locations.size() - 1).getLongitude());
                         mMap.addMarker(new MarkerOptions().position(origin).title("Başlangıç"));
@@ -254,8 +253,8 @@ public class MapFragment extends Fragment implements GoogleMap.OnMyLocationButto
         PendingIntent pendingIntent = geofenceHelper.getPendingIntent();
 
         geofencingClient.addGeofences(geofencingRequest, pendingIntent)
-                .addOnSuccessListener(aVoid -> Log.d("test2", "onSuccess: Geofence Added..."))
-                .addOnFailureListener(e -> Log.d("test2", "onFailure: " + e.getMessage()));
+                .addOnSuccessListener(aVoid -> Log.d(TAG, "onSuccess: Geofence Added..."))
+                .addOnFailureListener(e -> Log.d(TAG, "onFailure: " + e.getMessage()));
     }
 
     private void addMarker(LatLng latLng) {
@@ -284,11 +283,9 @@ public class MapFragment extends Fragment implements GoogleMap.OnMyLocationButto
     }
 
     private static ArrayList<LatLng> getDirections(LatLng origin, LatLng destination) {
-        //Define list to get all latlng for the route
         ArrayList<LatLng> path = new ArrayList<>();
-        Log.d("test", origin.latitude + "," + origin.longitude + "\n" + destination.latitude + "," + destination.longitude);
+        Log.d(TAG, origin.latitude + "," + origin.longitude + "\n" + destination.latitude + "," + destination.longitude);
 
-        //Execute Directions API request
         GeoApiContext context = new GeoApiContext.Builder()
                 .apiKey("AIzaSyAaflO4djVC3VTRXf9SpyXF16U1i0LDzK4")
                 .build();
@@ -298,7 +295,6 @@ public class MapFragment extends Fragment implements GoogleMap.OnMyLocationButto
         try {
             DirectionsResult res = req.await();
 
-            //Loop through legs and steps to get encoded polylines of each step
             if (res.routes != null && res.routes.length > 0) {
                 DirectionsRoute route = res.routes[0];
 
@@ -313,7 +309,6 @@ public class MapFragment extends Fragment implements GoogleMap.OnMyLocationButto
                                         DirectionsStep step1 = step.steps[k];
                                         EncodedPolyline points1 = step1.polyline;
                                         if (points1 != null) {
-                                            //Decode polyline and add points to list of route coordinates
                                             List<com.google.maps.model.LatLng> coords1 = points1.decodePath();
                                             for (com.google.maps.model.LatLng coord1 : coords1) {
                                                 path.add(new LatLng(coord1.lat, coord1.lng));
@@ -323,7 +318,6 @@ public class MapFragment extends Fragment implements GoogleMap.OnMyLocationButto
                                 } else {
                                     EncodedPolyline points = step.polyline;
                                     if (points != null) {
-                                        //Decode polyline and add points to list of route coordinates
                                         List<com.google.maps.model.LatLng> coords = points.decodePath();
                                         for (com.google.maps.model.LatLng coord : coords) {
                                             path.add(new LatLng(coord.lat, coord.lng));
@@ -336,7 +330,7 @@ public class MapFragment extends Fragment implements GoogleMap.OnMyLocationButto
                 }
             }
         } catch (Exception ex) {
-            Log.e("test1", ex.getLocalizedMessage());
+            Log.e(TAG, ex.getLocalizedMessage());
         }
         return path;
     }

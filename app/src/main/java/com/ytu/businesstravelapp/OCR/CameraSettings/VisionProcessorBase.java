@@ -1,19 +1,3 @@
-/*
- * Copyright 2020 Google LLC. All rights reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.ytu.businesstravelapp.OCR.CameraSettings;
 
 import static java.lang.Math.max;
@@ -47,18 +31,11 @@ import com.google.mlkit.vision.common.InputImage;
 import com.ytu.businesstravelapp.OCR.Preference.PreferenceUtils;
 
 import java.nio.ByteBuffer;
+import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
 
-/**
- * Abstract base class for vision frame processors. Subclasses need to implement {@link
- * #onSuccess(Object, GraphicOverlay)} to define what they want to with the detection results and
- * {@link #detectInImage(InputImage)} to specify the detector object.
- *
- * @param <T> The type of the detected feature.
- */
 public abstract class VisionProcessorBase<T> implements VisionImageProcessor {
-
     protected static final String MANUAL_TESTING_LOG = "LogTagForTest";
     private static final String TAG = "VisionProcessorBase";
 
@@ -67,10 +44,8 @@ public abstract class VisionProcessorBase<T> implements VisionImageProcessor {
     private final ScopedExecutor executor;
     private final TemperatureMonitor temperatureMonitor;
 
-    // Whether this processor is already shut down
     private boolean isShutdown;
 
-    // Used to calculate latency, running in the same thread, no sync needed.
     private int numRuns = 0;
     private long totalFrameMs = 0;
     private long maxFrameMs = 0;
@@ -79,17 +54,14 @@ public abstract class VisionProcessorBase<T> implements VisionImageProcessor {
     private long maxDetectorMs = 0;
     private long minDetectorMs = Long.MAX_VALUE;
 
-    // Frame count that have been processed so far in an one second interval to calculate FPS.
     private int frameProcessedInOneSecondInterval = 0;
     private int framesPerSecond = 0;
 
-    // To keep the latest images and its metadata.
     @GuardedBy("this")
     private ByteBuffer latestImage;
 
     @GuardedBy("this")
     private FrameMetadata latestImageMetaData;
-    // To keep the images and metadata in process.
     @GuardedBy("this")
     private ByteBuffer processingImage;
 
@@ -107,12 +79,11 @@ public abstract class VisionProcessorBase<T> implements VisionImageProcessor {
                         frameProcessedInOneSecondInterval = 0;
                     }
                 },
-                /* delay= */ 0,
-                /* period= */ 1000);
+                0,
+                1000);
         temperatureMonitor = new TemperatureMonitor(context);
     }
 
-    // -----------------Code for processing single still image----------------------------------------
     @Override
     public void processBitmap(Bitmap bitmap, final GraphicOverlay graphicOverlay) {
         long frameStartMs = SystemClock.elapsedRealtime();
@@ -138,7 +109,6 @@ public abstract class VisionProcessorBase<T> implements VisionImageProcessor {
                 frameStartMs);
     }
 
-    // -----------------Code for processing live preview frame from Camera1 API-----------------------
     @Override
     public synchronized void processByteBuffer(
             ByteBuffer data, final FrameMetadata frameMetadata, final GraphicOverlay graphicOverlay) {
@@ -163,8 +133,6 @@ public abstract class VisionProcessorBase<T> implements VisionImageProcessor {
             ByteBuffer data, final FrameMetadata frameMetadata, final GraphicOverlay graphicOverlay) {
         long frameStartMs = SystemClock.elapsedRealtime();
 
-        // If live viewport is on (that is the underneath surface view takes care of the camera preview
-        // drawing), skip the unnecessary bitmap creation that used for the manual preview drawing.
         Bitmap bitmap =
                 PreferenceUtils.isCameraLiveViewportEnabled(graphicOverlay.getContext())
                         ? null
@@ -183,7 +151,6 @@ public abstract class VisionProcessorBase<T> implements VisionImageProcessor {
             requestDetectInImage(mlImage, graphicOverlay, bitmap, /* shouldShowFps= */ true, frameStartMs)
                     .addOnSuccessListener(executor, results -> processLatestImage(graphicOverlay));
 
-            // This is optional. Java Garbage collection can also close it eventually.
             mlImage.close();
             return;
         }
@@ -202,7 +169,6 @@ public abstract class VisionProcessorBase<T> implements VisionImageProcessor {
                 .addOnSuccessListener(executor, results -> processLatestImage(graphicOverlay));
     }
 
-    // -----------------Code for processing live preview frame from CameraX API-----------------------
     @Override
     @RequiresApi(VERSION_CODES.LOLLIPOP)
     @ExperimentalGetImage
@@ -220,7 +186,7 @@ public abstract class VisionProcessorBase<T> implements VisionImageProcessor {
 
         if (isMlImageEnabled(graphicOverlay.getContext())) {
             MlImage mlImage =
-                    new MediaMlImageBuilder(image.getImage())
+                    new MediaMlImageBuilder(Objects.requireNonNull(image.getImage()))
                             .setRotation(image.getImageInfo().getRotationDegrees())
                             .build();
 
@@ -230,28 +196,19 @@ public abstract class VisionProcessorBase<T> implements VisionImageProcessor {
                     /* originalCameraImage= */ bitmap,
                     /* shouldShowFps= */ true,
                     frameStartMs)
-                    // When the image is from CameraX analysis use case, must call image.close() on received
-                    // images when finished using them. Otherwise, new images may not be received or the
-                    // camera may stall.
-                    // Currently MlImage doesn't support ImageProxy directly, so we still need to call
-                    // ImageProxy.close() here.
                     .addOnCompleteListener(results -> image.close());
             return;
         }
 
         requestDetectInImage(
-                InputImage.fromMediaImage(image.getImage(), image.getImageInfo().getRotationDegrees()),
+                InputImage.fromMediaImage(Objects.requireNonNull(image.getImage()), image.getImageInfo().getRotationDegrees()),
                 graphicOverlay,
                 /* originalCameraImage= */ bitmap,
                 /* shouldShowFps= */ true,
                 frameStartMs)
-                // When the image is from CameraX analysis use case, must call image.close() on received
-                // images when finished using them. Otherwise, new images may not be received or the camera
-                // may stall.
                 .addOnCompleteListener(results -> image.close());
     }
 
-    // -----------------Common processing logic-------------------------------------------------------
     private Task<T> requestDetectInImage(
             final InputImage image,
             final GraphicOverlay graphicOverlay,
@@ -297,8 +254,6 @@ public abstract class VisionProcessorBase<T> implements VisionImageProcessor {
                     maxDetectorMs = max(currentDetectorLatencyMs, maxDetectorMs);
                     minDetectorMs = min(currentDetectorLatencyMs, minDetectorMs);
 
-                    // Only log inference info once per second. When frameProcessedInOneSecondInterval is
-                    // equal to 1, it means this is the first frame processed during the current second.
                     if (frameProcessedInOneSecondInterval == 1) {
                         Log.d(TAG, "Num of Runs: " + numRuns);
                         Log.d(

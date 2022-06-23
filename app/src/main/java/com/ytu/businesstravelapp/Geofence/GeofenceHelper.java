@@ -44,7 +44,7 @@ public class GeofenceHelper extends ContextWrapper {
         }
         Intent intent = new Intent(this, GeofenceBroadcastReceiver.class);
         pendingIntent = PendingIntent.getBroadcast(this, 2607, intent, PendingIntent.FLAG_MUTABLE);
-        Log.d("test2", "pending...");
+        Log.d("ytuLog", "pending intent created");
 
         return pendingIntent;
     }
