@@ -156,7 +156,7 @@ public class ResultActivity extends AppCompatActivity implements OnMapReadyCallb
         Log.d(TAG, origin.latitude + "," + origin.longitude + "\n" + destination.latitude + "," + destination.longitude);
 
         GeoApiContext context = new GeoApiContext.Builder()
-                .apiKey("AIzaSyAaflO4djVC3VTRXf9SpyXF16U1i0LDzK4")
+                .apiKey("api_key")
                 .build();
         DirectionsApiRequest req =
                 DirectionsApi.getDirections(context, origin.latitude + "," + origin.longitude,
